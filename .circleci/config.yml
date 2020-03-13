@@ -41,7 +41,7 @@ jobs:
       # run tests!
     
       - run: ls
-      - run: cd
+      - run: cd tiralabra-nonogram
       - run: ls
       - run: ./gradlew test
       - run: ./gradlew check
