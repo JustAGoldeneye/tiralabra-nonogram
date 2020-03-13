@@ -40,9 +40,7 @@ jobs:
 
       # run tests!
     
-      - run: ls
-      - run: cd tiralabra-nonogram
-      - run: ls
+      - run: pwd
       - run: ./gradlew test
       - run: ./gradlew check
       - run: ./gradlew jacocoTestReport
