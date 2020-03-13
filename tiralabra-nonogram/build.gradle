@@ -1,3 +1,7 @@
+plugins {
+    id 'checkstyle'
+}
+
 apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'jacoco'
@@ -18,17 +22,23 @@ jar {
 mainClassName = 'main.Main'
 
 repositories {
-    mavenCentral()
+    jcenter()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.10'
+    testCompile 'junit:junit:4.12'
 }
 
 jacocoTestReport {
     reports {
         xml.enabled = true
         html.enabled = true
+    }
+    afterEvaluate {
+        classDirectories.from = files(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: ['main/**'])
+        })
     }
 }
 
