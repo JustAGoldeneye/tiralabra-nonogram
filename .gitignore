@@ -1,3 +1,14 @@
+# Others
+.directory
+#/bin/
+#/resources/
+
+# Gradle
+/tiralabra-nonogram/*.tmp
+/tiralabra-nonogram/build/
+/tiralabra-nonogram/.gradle/
+/tiralabra-nonogram/.nb-gradle/
+
 # Compiled class file
 *.class
 
