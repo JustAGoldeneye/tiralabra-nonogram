@@ -22,8 +22,7 @@ jobs:
       TERM: dumb
 
     steps:
-      - checkout:
-        path: ~/tiralabra-nonogram
+      - checkout
 
       # Download and cache dependencies
       - restore_cache:
