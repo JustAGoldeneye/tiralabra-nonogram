@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/JustAGoldeneye/tiralabra-nonogram.svg?style=svg)](https://circleci.com/gh/JustAGoldeneye/tiralabra-nonogram)
+
 # Nonogram solver
 
 Eemeli Leppä
