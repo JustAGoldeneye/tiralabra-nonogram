@@ -48,8 +48,11 @@ jobs:
       #- run: ./gradlew test
       #- run: ./gradlew check
       #- run: ./gradlew jacocoTestReport
-      - run: ./tiralabra-nonogram/gradlew test
-      - run: ./tiralabra-nonogram/gradlew check
-      - run: ./tiralabra-nonogram/gradlew jacocoTestReport
+      #- run: ./tiralabra-nonogram/gradlew test
+      #- run: ./tiralabra-nonogram/gradlew check
+      #- run: ./tiralabra-nonogram/gradlew jacocoTestReport
+      - run: ~/tiralabra-nonogram/tiralabra-nonogram/gradlew test
+      - run: ~/tiralabra-nonogram/tiralabra-nonogram/gradlew check
+      - run: ~/tiralabra-nonogram/tiralabra-nonogram/gradlew jacocoTestReport
       #- run: bash <(curl -s https://codecov.io/bash)
 
