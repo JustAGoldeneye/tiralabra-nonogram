@@ -2,7 +2,6 @@ package domain.structs;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-import domain.structs.NumberRowTest;
 import org.junit.Before;
 
 public class NumberRowTest {
@@ -30,8 +29,14 @@ public class NumberRowTest {
     }
     
     @Test
-    public void createsEmptyRowWhenJustLengthGiven() {
+    public void creates0RowWhenJustLengthGiven() {
         NumberRow row = new NumberRow(3);
         assertEquals(row.lookNumber(0), row.lookNumber(1), row.lookNumber(2));
+    }
+    
+    @Test
+    public void creates1lengthRowWhenNothingGiven() {
+        NumberRow row = new NumberRow();
+        assertTrue((row.length() == 1));
     }
 }

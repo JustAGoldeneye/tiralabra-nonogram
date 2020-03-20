@@ -1,10 +1,11 @@
 package main;
 
 import java.util.Scanner;
+import domain.structs.Chart;
 
 public class Main {
     public static void main(String[] args) {
-        sanityCheck();
+        manualTestChart();
     }
     
     private static void sanityCheck() {
@@ -12,5 +13,10 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String answer = scanner.next();
         System.out.println("OK, " + answer);
+    }
+    
+    private static void manualTestChart() {
+        Chart chart = new Chart(15, 10);
+        chart.PrintChart();
     }
 }

@@ -15,6 +15,10 @@ public class NumberRow {
         this.numbers = new int[length];
     }
     
+    NumberRow() {
+        this.numbers = new int[1];
+    }
+    
     /**
      * Looks the number in the given position.
      * @param position  position to look a number from
