@@ -14,7 +14,7 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
 
-    working_directory: ~/tiralabra-nonogram/tiralabra-nonogram/
+    working_directory: ~/tiralabra-nonogram/tiralabra-nonogram
 
     environment:
       # Customize the JVM maximum heap limit
@@ -43,6 +43,9 @@ jobs:
       - run: pwd
       - run: ls -la
       - run: ls -la tiralabra-nonogram
+      - run: ./gradlew test
+      - run: ./gradlew check
+      - run: ./gradlew jacocoTestReport
       - run: ./tiralabra-nonogram/gradlew test
       - run: ./tiralabra-nonogram/gradlew check
       - run: ./tiralabra-nonogram/gradlew jacocoTestReport
