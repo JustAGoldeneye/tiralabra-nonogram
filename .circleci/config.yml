@@ -41,6 +41,8 @@ jobs:
       # run tests!
     
       - run: pwd
+      - run: ls -la ..
+      - run: ls -la ../..
       - run: ls -la
       - run: ls -la tiralabra-nonogram
       - run: gradle test
