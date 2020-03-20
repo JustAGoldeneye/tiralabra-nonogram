@@ -45,11 +45,11 @@ jobs:
       - run: ls -la ../..
       - run: ls -la
       - run: ls -la tiralabra-nonogram
-      - run: ./gradlew test
-      - run: ./gradlew check
-      - run: ./gradlew jacocoTestReport
-      #- run: ./tiralabra-nonogram/gradlew test
-      #- run: ./tiralabra-nonogram/gradlew check
-      #- run: ./tiralabra-nonogram/gradlew jacocoTestReport
+      #- run: ./gradlew test
+      #- run: ./gradlew check
+      #- run: ./gradlew jacocoTestReport
+      - run: ./tiralabra-nonogram/gradlew test
+      - run: ./tiralabra-nonogram/gradlew check
+      - run: ./tiralabra-nonogram/gradlew jacocoTestReport
       #- run: bash <(curl -s https://codecov.io/bash)
 
