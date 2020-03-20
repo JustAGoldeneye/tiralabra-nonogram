@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/JustAGoldeneye/tiralabra-nonogram.svg?style=svg)](https://circleci.com/gh/JustAGoldeneye/tiralabra-nonogram)
+[![CircleCI](https://circleci.com/gh/JustAGoldeneye/tiralabra-nonogram.svg?style=svg)](https://circleci.com/gh/JustAGoldeneye/tiralabra-nonogram) [![codecov](https://codecov.io/gh/JustAGoldeneye/tiralabra-nonogram/branch/master/graph/badge.svg)](https://codecov.io/gh/JustAGoldeneye/tiralabra-nonogram)
 
 # Nonogram solver
 
