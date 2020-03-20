@@ -8,4 +8,4 @@ Eemeli Leppä
 
 ## Documentation
 
-* [Definition document](https://github.com/JustAGoldeneye/tiralabra-nonogram/blob/master/Documentation/Definition_document.mdn)
+* [Definition document](https://github.com/JustAGoldeneye/tiralabra-nonogram/blob/master/Documentation/Definition_document.md)
