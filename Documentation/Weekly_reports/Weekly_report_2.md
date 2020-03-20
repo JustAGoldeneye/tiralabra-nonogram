@@ -8,4 +8,4 @@ I do not think I learned anything new this week, aside from configurating Circle
 
 As the next thing I am going to finish the data structures need for handling nongram charts. After that I start working on the graphical user-interface and on a simple implementation of the solving algorithm I have planned. 
 
-Time used this week: 7 h 15 min
+Time used this week: 7 h 0 min
