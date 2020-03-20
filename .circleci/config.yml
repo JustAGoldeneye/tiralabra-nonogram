@@ -23,6 +23,7 @@ jobs:
 
     steps:
       - checkout
+      path: ~/tiralabra-nonogram
 
       # Download and cache dependencies
       - restore_cache:
