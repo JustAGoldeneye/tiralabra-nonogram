@@ -7,6 +7,7 @@ Eemeli Leppä
 ## Weekly reports
 
 * [Weekly report 1](https://github.com/JustAGoldeneye/tiralabra-nonogram/blob/master/Documentation/Weekly_reports/Weekly_report_1.md)
+* [Weekly report 2](https://github.com/JustAGoldeneye/tiralabra-nonogram/blob/master/Documentation/Weekly_reports/Weekly_report_2.md)
 
 ## Documentation
 
