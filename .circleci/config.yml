@@ -45,9 +45,9 @@ jobs:
       - run: ls -la ../..
       - run: ls -la
       - run: ls -la tiralabra-nonogram
-      - run: gradle test
-      - run: gradle check
-      - run: gradle jacocoTestReport
+      - run: ./gradlew test
+      - run: ./gradlew check
+      - run: ./gradlew jacocoTestReport
       #- run: ./tiralabra-nonogram/gradlew test
       #- run: ./tiralabra-nonogram/gradlew check
       #- run: ./tiralabra-nonogram/gradlew jacocoTestReport
