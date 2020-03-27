@@ -48,4 +48,38 @@ public class ChartTest {
         Chart chart2 = new Chart(numRowsT, numRowsL);
         assertTrue(chart2.topNumberRowIn(4).lookNumber(0) == 2);    
     }
+    
+    @Test
+    public void horizontalChartRowCanBeConvertedToRow() {
+        this.chart.changeSquareStaus(0, 0, SquareStatus.BLACK);
+        this.chart.changeSquareStaus(2, 0, SquareStatus.BLACK);
+        
+        Row row = this.chart.horizontalChartRowToRow(0);
+        if (row.squares[0] != SquareStatus.BLACK) {
+            fail();
+        }
+        if (row.squares[1] != SquareStatus.EMPTY) {
+            fail();
+        }
+        if (row.squares[2] != SquareStatus.BLACK) {
+            fail();
+        }
+    }
+    
+    @Test
+    public void verticalChartRowCanBeConvertedToRow() {
+        this.chart.changeSquareStaus(0, 0, SquareStatus.BLACK);
+        this.chart.changeSquareStaus(0, 2, SquareStatus.BLACK);
+        
+        Row row = this.chart.verticalChartRowToRow(0);
+        if (row.squares[0] != SquareStatus.BLACK) {
+            fail();
+        }
+        if (row.squares[1] != SquareStatus.EMPTY) {
+            fail();
+        }
+        if (row.squares[2] != SquareStatus.BLACK) {
+            fail();
+        }
+    }
 }

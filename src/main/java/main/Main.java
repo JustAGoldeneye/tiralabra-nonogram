@@ -17,8 +17,18 @@ public class Main {
     
     private static void manualTestChart() {
         Chart chart = new Chart(15, 10);
+        chart.changeSquareStaus(1, 6, SquareStatus.BLACK);
+        chart.changeSquareStaus(6, 4, SquareStatus.BLACK);
+        chart.changeSquareStaus(6, 6, SquareStatus.BLACK);
+        
         chart.printChart();
-        System.out.println(chart.horizontalLength());
-        System.out.println(chart.verticalLength());
+        System.out.println("");
+        
+        Row row = chart.horizontalChartRowToRow(6);
+        row.PrintRow();
+        System.out.println("");
+        
+        Row row2 = chart.verticalChartRowToRow(6);
+        row2.PrintRow();
     }
 }

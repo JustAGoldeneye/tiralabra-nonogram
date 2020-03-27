@@ -77,6 +77,28 @@ public class Chart {
         table[posVer][posHor] = newStatus;
     }
     
+    /**
+     * Get a horizontal row of the chart as a row object.
+     * @param position vertical position of a horizontal row
+     * @return horizontal row of the chart as a row object
+     */
+    public Row horizontalChartRowToRow(int position) {
+        return new Row(this.leftNumbers[position], this.table[position]);
+    }
+    
+    /**
+     * Get a vertical row of the chart as a row object.
+     * @param position horizontal position of a vertical row
+     * @return vertical row of the chart as a row object
+     */
+    public Row verticalChartRowToRow(int position) {
+        SquareStatus[] squareStatusRow = new SquareStatus[this.table.length];
+        for (int i=0; i < this.table.length; i++) {
+            squareStatusRow[i] = this.table[i][position];
+        }
+        return new Row(this.topNumbers[position], squareStatusRow);
+    }
+    
     public int horizontalLength() {
         return this.table[0].length;
     }
