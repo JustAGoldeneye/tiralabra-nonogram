@@ -30,5 +30,8 @@ public class Main {
         
         Row row2 = chart.verticalChartRowToRow(6);
         row2.PrintRow();
+        System.out.println("");
+        
+        row.subRow(1, 7).PrintRow();
     }
 }

@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 
 public class NumberRowTest {
-    NumberRow numberRow;
+    private NumberRow numberRow;
     
     @Before
     public void setUp() {

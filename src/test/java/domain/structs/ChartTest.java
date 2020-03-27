@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 
 public class ChartTest {
-    Chart chart;
+    private Chart chart;
     
     @Before
     public void setUp() {
@@ -55,13 +55,13 @@ public class ChartTest {
         this.chart.changeSquareStaus(2, 0, SquareStatus.BLACK);
         
         Row row = this.chart.horizontalChartRowToRow(0);
-        if (row.squares[0] != SquareStatus.BLACK) {
+        if (row.lookSquareStatus(0) != SquareStatus.BLACK) {
             fail();
         }
-        if (row.squares[1] != SquareStatus.EMPTY) {
+        if (row.lookSquareStatus(1) != SquareStatus.EMPTY) {
             fail();
         }
-        if (row.squares[2] != SquareStatus.BLACK) {
+        if (row.lookSquareStatus(2) != SquareStatus.BLACK) {
             fail();
         }
     }
@@ -72,13 +72,13 @@ public class ChartTest {
         this.chart.changeSquareStaus(0, 2, SquareStatus.BLACK);
         
         Row row = this.chart.verticalChartRowToRow(0);
-        if (row.squares[0] != SquareStatus.BLACK) {
+        if (row.lookSquareStatus(0) != SquareStatus.BLACK) {
             fail();
         }
-        if (row.squares[1] != SquareStatus.EMPTY) {
+        if (row.lookSquareStatus(1) != SquareStatus.EMPTY) {
             fail();
         }
-        if (row.squares[2] != SquareStatus.BLACK) {
+        if (row.lookSquareStatus(2) != SquareStatus.BLACK) {
             fail();
         }
     }

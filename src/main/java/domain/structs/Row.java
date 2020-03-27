@@ -5,8 +5,8 @@ package domain.structs;
  * @author eemeli
  */
 public class Row {
-    NumberRow numberRow;
-    SquareStatus[] squares;
+    private NumberRow numberRow;
+    private SquareStatus[] squares;
     
     Row(NumberRow numberRow, SquareStatus[] squares) {
         this.numberRow = numberRow;
@@ -19,6 +19,21 @@ public class Row {
     
     public void changeSquareStatus(int position, SquareStatus newStatus) {
         this.squares[position] = newStatus;
+    }
+    
+    /**
+     * Creates a new row that is a sub row of the existing row.
+     * @param firstPos start position for the squares of the sub row (inclusive)
+     * @param endPos end position for the squares of the sub row (exclusive)
+     */
+    public Row subRow(int firstPos, int endPos) {
+        SquareStatus[] newSquares = new SquareStatus[endPos - firstPos];
+        int i = 0;
+        while (firstPos + i < endPos) {
+            newSquares[i] = this.squares[firstPos + i];
+            i++;
+        }
+        return new Row(this.numberRow, newSquares);
     }
 
     public NumberRow getNumberRow() {
@@ -44,5 +59,6 @@ public class Row {
                 System.out.print(square + " ");
             }
         }
+        System.out.println("");
     }
 }
