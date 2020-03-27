@@ -9,12 +9,24 @@ public class Chart {
     private NumberRow[] leftNumbers;
     private NumberRow[] topNumbers;
     
-    public Chart(NumberRow[] leftNumbers, NumberRow[] topNumbers) {
+    /**
+     * Creates a nonograms chart with the given number rows. Sets the squares
+     * in the table to EMPTY status.
+     * @param leftNumbers
+     * @param topNumbers
+     */
+    public Chart(NumberRow[] topNumbers, NumberRow[] leftNumbers) {
         this.leftNumbers = leftNumbers;
         this.topNumbers = topNumbers;
         this.table = new SquareStatus[this.leftNumbers.length][this.topNumbers.length];
     }
     
+    /**
+     * Creates an empty nonogram chart of given size. Sets the squares in the table
+     * to EMPTY status and fills the number rows with zeros. Used for debugging.
+     * @param width width of the table
+     * @param height height of the table
+     */
     public Chart(int width, int height) {
         this.table = new SquareStatus[height][width];
         populateTableWithEmpties();
@@ -24,6 +36,9 @@ public class Chart {
         populateNumberRowsWithZeros(this.topNumbers);
     }
     
+    /**
+     * Sets squares in the table to EMPTY status.
+     */
     private void populateTableWithEmpties() {
         for (int i = 0; i < this.table.length; i++) {
             for (int j = 0; j < this.table[i].length; j++) {
@@ -32,19 +47,58 @@ public class Chart {
         }
     }
     
+    /**
+     * Fills the given number rows with zeros.
+     * @param numberRows number row to be filled
+     */
     private void populateNumberRowsWithZeros(NumberRow[] numberRows) {
         for (int i = 0; i < numberRows.length; i++) {
             numberRows[i] = new NumberRow();
         }
     }
     
+    /**
+     * Looks the status of the square in the given position.
+     * @param posHor    horizontal position to look a square from
+     * @param posVer    vertical position to look a square from
+     * @return          square in the given position
+     */
+    public SquareStatus lookSquareStatus(int posHor, int posVer) {
+        return table[posVer][posHor];
+    }
+    
+    /**
+     * Looks the status of the square in the given position.
+     * @param posHor    horizontal position to look a square from
+     * @param posVer    vertical position to look a square from
+     * @param newStatus replaces the status of the square in the given position
+     */
+    public void changeSquareStaus(int posHor, int posVer, SquareStatus newStatus) {
+        table[posVer][posHor] = newStatus;
+    }
+    
+    public int horizontalLength() {
+        return this.table[0].length;
+    }
+    
+    public int verticalLength() {
+        return this.table.length;
+    }
+    
+    public NumberRow leftNumberRowIn(int position) {
+        return this.leftNumbers[position];
+    }
+    
+    public NumberRow topNumberRowIn(int position) {
+        return this.topNumbers[position];
+    }
+    
     // TODO
     
     /**
      * Prints the chart. Used for debugging
-     *
      */
-    public void PrintChart() {
+    public void printChart() {
         System.out.println("Left:");
         printNumberRows(this.leftNumbers);
         System.out.println("");
@@ -57,7 +111,10 @@ public class Chart {
         printTable();
     }
     
-    // Used for debugging
+    /**
+     * Prints the given number row. Used for debugging
+     * @param numberRows number row to be printed
+     */
     private void printNumberRows(NumberRow[] numberRows) {
         for (NumberRow numberRow : numberRows) {
             if (numberRow == null) {
@@ -72,10 +129,12 @@ public class Chart {
         System.out.println(numberRows.length + " rows");
     }
     
-    // Used for debugging
+    /**
+     * Prints the table. Used for debugging
+     */
     private void printTable() {
-        for (int i = 0; i < this.table.length; i++) {
-            for (int j = 0; j < this.table[i].length; j++) {
+        for (int i = 0; i < this.verticalLength(); i++) {
+            for (int j = 0; j < this.horizontalLength(); j++) {
                 SquareStatus result = this.table[i][j];
                 if (result == null) {
                     System.out.print("N ");
@@ -91,6 +150,6 @@ public class Chart {
             }
             System.out.println("");
         }
-        System.out.println(this.table.length + " x " + this.table[0].length);
+        System.out.println(this.horizontalLength() + " x " + this.verticalLength());
     }
 }

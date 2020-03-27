@@ -7,14 +7,17 @@ package domain.structs;
 public class NumberRow {
     private final int[] numbers;
     
+    /**
+     * Creates a nonogram number row with given numbers.
+     * @param numbers the numbers to create the number row with
+     */
     NumberRow(int[] numbers) {
         this.numbers = numbers;
     }
     
-    NumberRow(int length) {
-        this.numbers = new int[length];
-    }
-    
+    /**
+     * Creates a nonogram number row with single 0.
+     */
     NumberRow() {
         this.numbers = new int[1];
     }

@@ -18,7 +18,7 @@ public class NumberRowTest {
     }
     
     @Test
-    public void changinNumberWorks() {
+    public void changingNumberWorks() {
         this.numberRow.changeNumber(3, 15);
         assertEquals(this.numberRow.lookNumber(3),15);
     }
@@ -26,12 +26,6 @@ public class NumberRowTest {
     @Test
     public void lengthIsCorrect() {
         assertEquals(this.numberRow.length(), 4);
-    }
-    
-    @Test
-    public void creates0RowWhenJustLengthGiven() {
-        NumberRow row = new NumberRow(3);
-        assertEquals(row.lookNumber(0), row.lookNumber(1), row.lookNumber(2));
     }
     
     @Test

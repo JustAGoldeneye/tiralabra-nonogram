@@ -1,7 +1,7 @@
 package main;
 
 import java.util.Scanner;
-import domain.structs.Chart;
+import domain.structs.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,6 +17,8 @@ public class Main {
     
     private static void manualTestChart() {
         Chart chart = new Chart(15, 10);
-        chart.PrintChart();
+        chart.printChart();
+        System.out.println(chart.horizontalLength());
+        System.out.println(chart.verticalLength());
     }
 }
