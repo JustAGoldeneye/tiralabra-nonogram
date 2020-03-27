@@ -2,7 +2,7 @@
 
 The goal of the project is to make a program that can solve nonograms.
 
-The core of the program is a nonogram row checker that checks whether or not there exists blocks that would be colored in every solution. If the checker finds blocks like this, it marks them as black or empty. For example, row [5 2 | _0______0_] would become [5 2 | _0000_X_0_] (_ unknown, 0 black, X empty). (In this text, instead of writing "row or column", I will be using a term "nonogram row" instead.)
+The core of the program is a nonogram row checker that checks whether or not there exists blocks that would be colored in every solution. If the checker finds blocks like this, it marks them as black or empty. For example, row [5 2 | ?1??????1?] would become [5 2 | ?1111?0?1?] (? unknown, 1 black, 0 empty). (In this text, instead of writing "row or column", I will be using a term "nonogram row" instead.)
 
 If the row checker has a section that (supposedly) has only one group of blocks, the checker can determinne with simple math that wihch blocks of the section have to be black and which ahve to be empty.
 
