@@ -17,10 +17,19 @@ public class Chart {
     
     public Chart(int width, int height) {
         this.table = new SquareStatus[height][width];
+        populateTableWithEmpties();
         this.leftNumbers = new NumberRow[height];
         populateNumberRowsWithZeros(this.leftNumbers);
         this.topNumbers = new NumberRow[width];
         populateNumberRowsWithZeros(this.topNumbers);
+    }
+    
+    private void populateTableWithEmpties() {
+        for (int i = 0; i < this.table.length; i++) {
+            for (int j = 0; j < this.table[i].length; j++) {
+                this.table[i][j] = SquareStatus.EMPTY;
+            }
+        }
     }
     
     private void populateNumberRowsWithZeros(NumberRow[] numberRows) {
@@ -70,7 +79,13 @@ public class Chart {
                 SquareStatus result = this.table[i][j];
                 if (result == null) {
                     System.out.print("N ");
-                } else {
+                } else if (result == SquareStatus.EMPTY) {
+                    System.out.print("? ");
+                } else if (result == SquareStatus.BLACK) {
+                    System.out.print("1 ");
+                } else if (result == SquareStatus.CROSS) {
+                    System.out.print("0 ");
+                }else {
                     System.out.print(result + " ");
                 }
             }
