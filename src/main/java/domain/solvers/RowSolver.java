@@ -65,10 +65,11 @@ public class RowSolver {
             }
         }
         
-        // Unfinished, at least backtracking and several squares in a row needed.
+        // Unfinished, at least backtracking and marking several squares in
+        // a row needed. JUNIT + JAVADOC NEEDED
         // Make a stack structure and use it to replace instance number and
         // current instance number (top value should be editable and lookable
-        // without popping)
+        // without popping)?
         
         this.instanceSquares[pos] = SquareStatus.BLACK;
     }
