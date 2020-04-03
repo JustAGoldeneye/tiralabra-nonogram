@@ -21,8 +21,26 @@ public class Row {
         this.squares[position] = newStatus;
     }
     
+    // fromIndex is not needed anymore. Removing the function should also be
+    // considered.
     /**
-     * Creates a new row that is a sub row of the existing row.
+     * Returns a copy of the squares of this Row object. The new object has its
+     * own reference in memory. If copying is started beyond index 0, squares
+     * before the start point will be null.
+     * @param fromIndex the index to start copying from
+     * @return a copy of the squares of this Row object
+     */
+    public SquareStatus[] copySquares(int fromIndex) {
+        SquareStatus[] copyTo = new SquareStatus[this.squares.length];
+        for (int i = fromIndex; i < this.squares.length; i++) {
+            copyTo[i] = this.squares[i];
+        }
+        return copyTo;
+    }
+    
+    /**
+     * Creates a new row that is a sub row of the existing row. DO NOT USE, this
+     * function is not relevant for the current solution.
      * @param firstPos start position for the squares of the sub row (inclusive)
      * @param endPos end position for the squares of the sub row (exclusive)
      */
@@ -38,6 +56,14 @@ public class Row {
 
     public NumberRow getNumberRow() {
         return numberRow;
+    }
+
+    public void setSquares(SquareStatus[] squares) {
+        this.squares = squares;
+    }
+    
+    public int squaresLength() {
+        return this.squares.length;
     }
     
     // Used for debugging

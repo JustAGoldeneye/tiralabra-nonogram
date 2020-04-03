@@ -2,6 +2,7 @@ package main;
 
 import java.util.Scanner;
 import domain.structs.*;
+import domain.solvers.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -29,9 +30,14 @@ public class Main {
         System.out.println("");
         
         Row row2 = chart.verticalChartRowToRow(6);
+        row2.changeSquareStatus(2, SquareStatus.CROSS);
         row2.PrintRow();
         System.out.println("");
         
-        row.subRow(1, 7).PrintRow();
+        //row.subRow(1, 7).PrintRow();
+        
+        RowSolver rs = new RowSolver(row2);
+        rs.solve();
+        row2.PrintRow();
     }
 }
