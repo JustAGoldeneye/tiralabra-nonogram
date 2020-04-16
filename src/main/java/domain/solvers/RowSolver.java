@@ -72,6 +72,7 @@ public class RowSolver {
         // return true
         this.writeToSolution();
         return true;
+        // REMOVE COMMENTED CODE WHEN UNNECESSARY
     }
     
     /**
