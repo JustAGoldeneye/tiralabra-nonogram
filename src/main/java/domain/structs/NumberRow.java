@@ -11,14 +11,14 @@ public class NumberRow {
      * Creates a nonogram number row with given numbers.
      * @param numbers the numbers to create the number row with
      */
-    NumberRow(int[] numbers) {
+    public NumberRow(int[] numbers) {
         this.numbers = numbers;
     }
     
     /**
      * Creates a nonogram number row with single 0.
      */
-    NumberRow() {
+    public NumberRow() {
         this.numbers = new int[1];
     }
     

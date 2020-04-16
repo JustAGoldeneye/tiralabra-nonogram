@@ -61,6 +61,10 @@ public class Row {
     public void setSquares(SquareStatus[] squares) {
         this.squares = squares;
     }
+
+    public void setNumberRow(NumberRow numberRow) {
+        this.numberRow = numberRow;
+    }
     
     public int squaresLength() {
         return this.squares.length;

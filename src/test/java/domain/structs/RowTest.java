@@ -25,4 +25,9 @@ public class RowTest {
             fail("Square 2 in the sub row was incorrect.");
         }
     }
+    
+    /*
+    Do a test that uses the exact example row that was used in the algorithm
+    design memo on the paper. (The one with step-by-step progression)
+    */
 }
