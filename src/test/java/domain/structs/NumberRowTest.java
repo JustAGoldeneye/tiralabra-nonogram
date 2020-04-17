@@ -17,11 +17,13 @@ public class NumberRowTest {
         assertEquals(this.numberRow.lookNumber(3),8);
     }
     
+    /*
     @Test
     public void changingNumberWorks() {
         this.numberRow.changeNumber(3, 15);
         assertEquals(this.numberRow.lookNumber(3),15);
     }
+    */
     
     @Test
     public void lengthIsCorrect() {

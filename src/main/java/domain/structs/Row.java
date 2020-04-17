@@ -8,7 +8,7 @@ public class Row {
     private NumberRow numberRow;
     private SquareStatus[] squares;
     
-    Row(NumberRow numberRow, SquareStatus[] squares) {
+    public Row(NumberRow numberRow, SquareStatus[] squares) {
         this.numberRow = numberRow;
         this.squares = squares;
     }

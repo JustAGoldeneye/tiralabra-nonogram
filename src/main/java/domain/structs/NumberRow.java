@@ -36,9 +36,11 @@ public class NumberRow {
      * @param position  position to look a number from
      * @param number    replaces the number in the given position
      */
+    /*
     public void changeNumber(int position, int number) {
         this.numbers[position] = number;
     }
+    */
     
     public int length() {
         return this.numbers.length;
