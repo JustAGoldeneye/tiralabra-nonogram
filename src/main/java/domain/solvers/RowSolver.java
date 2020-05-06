@@ -16,6 +16,7 @@ public class RowSolver {
     private SquareStatus[] startSquares; // Replace with a better tryToFill()?
     private SquareStatus[] solutionSquares;
     private Boolean[] lockedSolutionSquares;
+    private Boolean[] changedSquares;
     private int startNextSearchFrom;
     
     public RowSolver(Row row) {
@@ -31,7 +32,9 @@ public class RowSolver {
         this.currentInstanceNumber = 0;
         this.startInstanceNumber = 0;
         this.lockedSolutionSquares = new Boolean[this.solutionSquares.length];
-        for (int i = 0; i < this.lockedSolutionSquares.length; i++) {
+        this.changedSquares = new Boolean[this.solutionSquares.length];
+        for (int i = 0; i < this.solutionSquares.length; i++) {
+            this.changedSquares[i] = false;
             this.lockedSolutionSquares[i] = (this.row.lookSquareStatus(i) != SquareStatus.EMPTY);
         }
     }
@@ -333,11 +336,13 @@ public class RowSolver {
                         && (this.solutionSquares[i] == SquareStatus.CROSS
                         || this.solutionSquares[i] == SquareStatus.EMPTY)) {
                     this.solutionSquares[i] = SquareStatus.CROSS;
+                    this.changedSquares[i] = true;
                     
                 } else if (this.instanceSquares[i] == SquareStatus.BLACK
                         && (this.solutionSquares[i] == SquareStatus.BLACK
                         || this.solutionSquares[i] == SquareStatus.EMPTY)) {
                     this.solutionSquares[i] = SquareStatus.BLACK;
+                    this.changedSquares[i] = true;
                     
                 } else if ((this.instanceSquares[i] == SquareStatus.EMPTY
                         && this.solutionSquares[i] == SquareStatus.BLACK)
@@ -345,6 +350,7 @@ public class RowSolver {
                         && this.solutionSquares[i] == SquareStatus.CROSS)) {
                     this.solutionSquares[i] = SquareStatus.EMPTY;
                     this.lockedSolutionSquares[i] = true;
+                    this.changedSquares[i] = false;
                 }
             }      
         }
@@ -366,5 +372,9 @@ public class RowSolver {
         }
         System.out.println("");
         //-
+    }
+
+    public Boolean[] getChangedSquares() {
+        return changedSquares;
     }
 }

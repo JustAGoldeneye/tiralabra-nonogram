@@ -39,9 +39,19 @@ public class Main {
         
         //row.subRow(1, 7).PrintRow();
         
+        Row orig = new Row(row2.getNumberRow(), row2.copySquares(0));
         RowSolver rs = new RowSolver(row2);
         rs.solve();
-        System.out.println("Solved row (Algorithm still unfinished):");
         row2.PrintRow();
+        orig.PrintRow();
+        Boolean[] changes = rs.getChangedSquares();
+        System.out.print("    | ");
+        for (int i = 0; i < changes.length; i++) {
+            if (changes[i]) {
+                System.out.print("c ");
+            } else {
+                System.out.print("_ ");
+            }
+        }
     }
 }
