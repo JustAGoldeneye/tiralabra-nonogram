@@ -41,6 +41,12 @@ public class RowSolver {
     }
     
     public void solve() {
+        if (this.numbers.length == 0) {
+            this.fillSolutionWithCrosses();
+            this.row.setSquares(this.solutionSquares);
+            return;
+        }
+            
         this.startNextSearchFrom = -1;
         while (this.startNextSearchFrom < this.instanceSquares.length && this.startInstanceNumber < this.numbers.length) {
             /*
@@ -427,6 +433,15 @@ public class RowSolver {
         System.out.println("");
         //-
         */
+    }
+    
+    private void fillSolutionWithCrosses() {
+        for (int i = 0; i < this.solutionSquares.length; i++) {
+            if (this.solutionSquares[i] != SquareStatus.CROSS) {
+                this.solutionSquares[i] = SquareStatus.CROSS;
+                this.changedSquares[i] = true;
+            }
+        }
     }
 
     public Boolean[] getChangedSquares() {

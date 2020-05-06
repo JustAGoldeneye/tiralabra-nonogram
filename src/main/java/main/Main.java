@@ -6,7 +6,7 @@ import domain.solvers.*;
 
 public class Main {
     public static void main(String[] args) {
-        chart5X5ManTest();
+        chartUncertainTest();
     }
     
     private static void sanityCheck() {
@@ -32,7 +32,7 @@ public class Main {
     
     private static void difficultManTest() {
         /*
-        Excepted solution:
+        Expected solution:
         1 5 | ? ? 0 ? 1 1 1 1 ? 0 
         */
         
@@ -74,13 +74,23 @@ public class Main {
     }
     
     private static void chart5X5ManTest() {
+        /*
+        Expected solution:
+        0 0 1 1 1 
+        0 1 1 1 1 
+        1 0 1 1 1 
+        1 0 0 1 0 
+        0 1 1 0 0 
+        */
+        
         NumberRow topNR1 = new NumberRow(new int[]{2});
         NumberRow topNR2 = new NumberRow(new int[]{1, 1});
         NumberRow topNR3 = new NumberRow(new int[]{3, 1});
         NumberRow topNR4 = new NumberRow(new int[]{4});
         NumberRow topNR5 = new NumberRow(new int[]{3});
         
-        NumberRow[] topNRs = new NumberRow[]{topNR1, topNR2, topNR3, topNR4, topNR5};
+        NumberRow[] topNRs = new NumberRow[]{topNR1, topNR2, topNR3, topNR4,
+            topNR5};
         
         NumberRow leftNR1 = new NumberRow(new int[]{3});
         NumberRow leftNR2 = new NumberRow(new int[]{4});
@@ -88,7 +98,48 @@ public class Main {
         NumberRow leftNR4 = new NumberRow(new int[]{1, 1});
         NumberRow leftNR5 = new NumberRow(new int[]{2});
         
-        NumberRow[] leftNRs = new NumberRow[]{leftNR1, leftNR2, leftNR3, leftNR4, leftNR5};
+        NumberRow[] leftNRs = new NumberRow[]{leftNR1, leftNR2, leftNR3,
+            leftNR4, leftNR5};
+        
+        Chart chart = new Chart(topNRs, leftNRs);
+        chart.printChart();
+        System.out.println("");
+        System.out.println("--------------------");
+        System.out.println("");
+        
+        SimpleChartSolver cs = new SimpleChartSolver(chart);
+        cs.solve();
+        
+        chart.printChart();
+    }
+    
+    private static void chartUncertainTest() {
+        /*
+        Expected solution:
+        ? ? 
+        ? ? 
+        ? ? 
+        ? ? 
+        0 0 
+        1 1 
+        1 1 
+        */
+        
+        NumberRow topNR1 = new NumberRow(new int[]{2, 2});
+        NumberRow topNR2 = new NumberRow(new int[]{2, 2});
+        
+        NumberRow[] topNRs = new NumberRow[]{topNR1, topNR2};
+        
+        NumberRow leftNR1 = new NumberRow(new int[]{1});
+        NumberRow leftNR2 = new NumberRow(new int[]{1});
+        NumberRow leftNR3 = new NumberRow(new int[]{1});
+        NumberRow leftNR4 = new NumberRow(new int[]{1});
+        NumberRow leftNR5 = new NumberRow(new int[]{});
+        NumberRow leftNR6 = new NumberRow(new int[]{2});
+        NumberRow leftNR7 = new NumberRow(new int[]{2});
+        
+        NumberRow[] leftNRs = new NumberRow[]{leftNR1, leftNR2, leftNR3,
+            leftNR4, leftNR5, leftNR6, leftNR7};
         
         Chart chart = new Chart(topNRs, leftNRs);
         chart.printChart();

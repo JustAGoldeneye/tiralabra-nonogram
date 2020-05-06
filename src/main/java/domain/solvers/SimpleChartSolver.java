@@ -30,9 +30,22 @@ public class SimpleChartSolver {
         while (this.solvesInLastRound && this.chartContainsEmpties) {
             this.solvesInLastRound = false;
             this.chartContainsEmpties = false;
+            /*
             //DB
             this.chart.printChart();
+            System.out.println("");
+            System.out.println(this.currentRound);
+            System.out.println("");
+            for (int i = 0; i < this.latestChangeToRows.length; i++) {
+                System.out.println(this.latestChangeToRows[i]);
+            }
+            System.out.println("");
+            for (int i = 0; i < this.latestChangeToColumns.length; i++) {
+                System.out.println(this.latestChangeToColumns[i]);
+            }
+            System.out.println("");
             //-
+            */
             this.checkChartOnce();
             currentRound++;
         }
@@ -59,15 +72,19 @@ public class SimpleChartSolver {
         RowSolver rs = new RowSolver(result);
         rs.solve();
         
-        this.latestChangeToRows[index] = this.currentRound;
+        Boolean squaresChangedOnThisRow = false;
         for (int i = 0; i < this.chart.horizontalLength(); i++) {
             if (this.chart.lookSquareStatus(i, index) == SquareStatus.EMPTY) {
                 this.chartContainsEmpties = true;
             }
             if (rs.getChangedSquares()[i]) {
+                squaresChangedOnThisRow = true;
                 this.chart.changeSquareStaus(i, index, result.lookSquareStatus(i));
                 this.latestChangeToColumns[i] = this.currentRound;
             }
+        }
+        if (squaresChangedOnThisRow) {
+            this.latestChangeToRows[index] = this.currentRound;
         }
     }
     
@@ -76,15 +93,19 @@ public class SimpleChartSolver {
         RowSolver rs = new RowSolver(result);
         rs.solve();
         
-        this.latestChangeToColumns[index] = this.currentRound;
+        Boolean squaresChangedOnThisColumn = false;
         for (int i = 0; i < this.chart.verticalLength(); i++) {   
             if (this.chart.lookSquareStatus(index, i) == SquareStatus.EMPTY) {
                 this.chartContainsEmpties = true;
             }
             if (rs.getChangedSquares()[i]) {
+                squaresChangedOnThisColumn = true;
                 this.chart.changeSquareStaus(index, i, result.lookSquareStatus(i));
                 this.latestChangeToRows[i] = this.currentRound;
-            }
+            } 
+        }
+        if (squaresChangedOnThisColumn) {
+            this.latestChangeToColumns[index] = this.currentRound;
         }
     }
 }
