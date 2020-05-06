@@ -6,7 +6,7 @@ import domain.solvers.*;
 
 public class Main {
     public static void main(String[] args) {
-        manualTestChart();
+        chart5X5ManTest();
     }
     
     private static void sanityCheck() {
@@ -16,34 +16,42 @@ public class Main {
         System.out.println("OK, " + answer);
     }
     
-    private static void manualTestChart() {
+    private static void structureManTests() {
         Chart chart = new Chart(15, 10);
         chart.changeSquareStaus(1, 6, SquareStatus.BLACK);
         chart.changeSquareStaus(6, 4, SquareStatus.BLACK);
         chart.changeSquareStaus(6, 6, SquareStatus.BLACK);
         
-        /*
         chart.printChart();
         System.out.println("");
         
         Row row = chart.horizontalChartRowToRow(6);
-        row.PrintRow();
+        row.printRow();
         System.out.println("");
+    }
+    
+    private static void difficultManTest() {
+        /*
+        Excepted solution:
+        1 5 | ? ? 0 ? 1 1 1 1 ? 0 
         */
+        
+        Chart chart = new Chart(15, 10);
+        chart.changeSquareStaus(1, 6, SquareStatus.BLACK);
+        chart.changeSquareStaus(6, 4, SquareStatus.BLACK);
+        chart.changeSquareStaus(6, 6, SquareStatus.BLACK);
         
         Row row2 = chart.verticalChartRowToRow(6);
         row2.changeSquareStatus(2, SquareStatus.CROSS);
         row2.setNumberRow(new NumberRow(new int[]{1, 5}));
-        row2.PrintRow();
+        row2.printRow();
         System.out.println("");
-        
-        //row.subRow(1, 7).PrintRow();
         
         Row orig = new Row(row2.getNumberRow(), row2.copySquares(0));
         RowSolver rs = new RowSolver(row2);
         rs.solve();
-        row2.PrintRow();
-        orig.PrintRow();
+        row2.printRow();
+        orig.printRow();
         Boolean[] changes = rs.getChangedSquares();
         System.out.print("    | ");
         for (int i = 0; i < changes.length; i++) {
@@ -53,5 +61,44 @@ public class Main {
                 System.out.print("_ ");
             }
         }
+    }
+    
+    private static void shortRowManTest() {
+        Row row3 = new Row(new NumberRow(new int[]{1, 3}),
+                new SquareStatus[]{SquareStatus.EMPTY, SquareStatus.CROSS,
+                    SquareStatus.BLACK, SquareStatus.BLACK, SquareStatus.BLACK});
+        row3.printRow();
+        RowSolver rs2 = new RowSolver(row3);
+        rs2.solve();
+        row3.printRow();
+    }
+    
+    private static void chart5X5ManTest() {
+        NumberRow topNR1 = new NumberRow(new int[]{2});
+        NumberRow topNR2 = new NumberRow(new int[]{1, 1});
+        NumberRow topNR3 = new NumberRow(new int[]{3, 1});
+        NumberRow topNR4 = new NumberRow(new int[]{4});
+        NumberRow topNR5 = new NumberRow(new int[]{3});
+        
+        NumberRow[] topNRs = new NumberRow[]{topNR1, topNR2, topNR3, topNR4, topNR5};
+        
+        NumberRow leftNR1 = new NumberRow(new int[]{3});
+        NumberRow leftNR2 = new NumberRow(new int[]{4});
+        NumberRow leftNR3 = new NumberRow(new int[]{1, 3});
+        NumberRow leftNR4 = new NumberRow(new int[]{1, 1});
+        NumberRow leftNR5 = new NumberRow(new int[]{2});
+        
+        NumberRow[] leftNRs = new NumberRow[]{leftNR1, leftNR2, leftNR3, leftNR4, leftNR5};
+        
+        Chart chart = new Chart(topNRs, leftNRs);
+        chart.printChart();
+        System.out.println("");
+        System.out.println("--------------------");
+        System.out.println("");
+        
+        SimpleChartSolver cs = new SimpleChartSolver(chart);
+        cs.solve();
+        
+        chart.printChart();
     }
 }

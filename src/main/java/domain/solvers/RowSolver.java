@@ -1,6 +1,7 @@
 package domain.solvers;
 
-import domain.structs.*;
+import domain.structs.Row;
+import domain.structs.SquareStatus;
 
 /**
  * Used to get á solution for a nonogam row based on the current information on the row.
@@ -50,15 +51,15 @@ public class RowSolver {
             this.writeToSolution();
             this.startNextSearchFrom++;
             */
-            System.out.println("Count start from based on " + this.startNextSearchFrom);
+            //System.out.println("Count start from based on " + this.startNextSearchFrom);
             this.startNextSearchFrom = this.findNextBlackSeriesStartAtOrigin(this.startNextSearchFrom);
             /*//Debugging
             Row db = new Row(this.row.getNumberRow(), this.startSquares);
             System.out.print("DBS: ");
-            db.PrintRow();
+            db.printRow();
             // -*/
-            System.out.println("Start from " + this.startNextSearchFrom);
-            System.out.println("Start series " + this.startInstanceNumber);
+            //System.out.println("Start from " + this.startNextSearchFrom);
+            //System.out.println("Start series " + this.startInstanceNumber);
             if (this.startNextSearchFrom == -1) {
                 break;
             }
@@ -66,7 +67,7 @@ public class RowSolver {
             if (!this.tryFillRow()) {
                 break;
             }
-            System.out.println("");
+            //System.out.println("");
         }
         this.row.setSquares(this.solutionSquares);
     } 
@@ -83,18 +84,25 @@ public class RowSolver {
         //int nextSeriesStartPos;
         while (true) {
             if (currentPos >= this.instanceSquares.length) {
-                System.out.println("meni sinne");
+                //System.out.println("meni sinne");
                 return false;
                 // ???
             }
             if (currentPos == -1) {
-                System.out.println("lock");
+                //System.out.println("lock");
                 this.lockNextNumberToStartSquares();
                 return true;
             }
+            
+            /*
+            // DB
+            System.out.println("Position: " + currentPos);
             System.out.println("Current number: " + this.numbers[this.currentInstanceNumber]);
             System.out.println("Empty: " + this.countEmptyAndBlackSquaresFrom(currentPos));
             System.out.println("Count:" + this.countEmptyAndBlackSquaresFrom(currentPos));
+            // -
+            */
+            
             if (this.countEmptyAndBlackSquaresFrom(currentPos) >= this.numbers[this.currentInstanceNumber]
                     && this.checkSeriesWillNotTouchOtherBlacksOnRight(currentPos, this.numbers[this.currentInstanceNumber])) {
                 this.blackenNextSeries(currentPos);
@@ -103,9 +111,9 @@ public class RowSolver {
             if (this.currentInstanceNumber >= this.numbers.length) {
                 break;
             }
-            System.out.println("");
+            //System.out.println("");
             currentPos = this.findNextBlackSeriesStartAtInstance(currentPos);
-            System.out.println("Pos:  " + currentPos);
+            //System.out.println("Pos:  " + currentPos);
             /*if (currentPos >= this.instanceSquares.length) {
                 System.out.println("meni sinne");
                 return false;
@@ -129,14 +137,14 @@ public class RowSolver {
             currentPos = nextSeriesStartPos;
             System.out.println("");*/
         }
-        System.out.println("WRITING");
+        //System.out.println("WRITING");
         this.writeToSolution();
         savePreviousSquares();
-        /* TEST CODE, add to RowSolverTest
+        /* //TEST CODE, add to RowSolverTest
         Row justATest = new Row(this.row.getNumberRow(), this.previousSquares);
-        justATest.PrintRow();
+        justATest.printRow();
         */
-        System.out.println("true");
+        //System.out.println("true");
         return true;
     }
     
@@ -149,7 +157,7 @@ public class RowSolver {
      * @return The start next position for next possible series as integer
      */
     private int findNextBlackSeriesStartAtInstance(int startPos) {
-        System.out.println("instance search");
+        //System.out.println("instance search");
         int squaresBeyondExistingBlackSquare = 0;
         Boolean existingBlackSquarePassed = false;
         for (int i = startPos + 1; i < this.instanceSquares.length; i++) {
@@ -159,6 +167,13 @@ public class RowSolver {
                 existingBlackSquarePassed = true;
                 squaresBeyondExistingBlackSquare++;
             }
+            /*
+            if (i < this.instanceSquares.length - 1) {
+                if (this.instanceSquares[i+1] == SquareStatus.BLACK) {
+                    continue;
+                }
+            }
+            */
             if (this.instanceSquares[i] == SquareStatus.EMPTY
                     || this.instanceSquares[i] == SquareStatus.BLACK) {
                 if (squaresBeyondExistingBlackSquare > this.numbers[this.currentInstanceNumber]) {
@@ -184,7 +199,7 @@ public class RowSolver {
      * @return The start next position for next possible series as integer
      */
     private int findNextBlackSeriesStartAtOrigin(int startPos) {
-        System.out.println("origin search");
+        //System.out.println("origin search");
         int squaresBeyondExistingBlackSquare = 0;
         Boolean existingBlackSquarePassed = false;
         for (int i = startPos + 1; i < this.startSquares.length; i++) {
@@ -194,6 +209,13 @@ public class RowSolver {
                 existingBlackSquarePassed = true;
                 squaresBeyondExistingBlackSquare++;
             }
+            /*
+            if (i < this.startSquares.length - 1) {
+                if (this.startSquares[i+1] == SquareStatus.BLACK) {
+                    continue;
+                }
+            }
+            */
             if (this.startSquares[i] == SquareStatus.EMPTY
                     || this.startSquares[i] == SquareStatus.BLACK) {
                 if (squaresBeyondExistingBlackSquare > this.numbers[this.startInstanceNumber]) {
@@ -221,28 +243,29 @@ public class RowSolver {
     }
     
     private Boolean checkSeriesWillNotTouchOtherBlacksOnRight(int currentPos, int SquaresToBlacken) {
-        if (currentPos+SquaresToBlacken >= this.instanceSquares.length - 1) {
+        if (currentPos+SquaresToBlacken >= this.instanceSquares.length) {
+            // NOTE: -1 has been removed from both sides of the comparasion to avoid redundancy.
             return true;
         }
         return this.instanceSquares[currentPos+SquaresToBlacken] != SquareStatus.BLACK;
     }
     
     private void blackenNextSeries(int startPos) {
-        System.out.println("Black: " + this.numbers[this.currentInstanceNumber]);
-        System.out.println(startPos);
+        //System.out.println("Black: " + this.numbers[this.currentInstanceNumber]);
+        //System.out.println(startPos);
         for (int i = 0; i < this.numbers[this.currentInstanceNumber] && startPos + i < this.instanceSquares.length; i++) {
-            System.out.println("b: " + i);
+            //System.out.println("b: " + i);
             if (this.instanceSquares[startPos + i] == SquareStatus.EMPTY) {
                 this.instanceSquares[startPos + i] = SquareStatus.BLACK;
                 /*//Debugging
                 Row db = new Row(this.row.getNumberRow(), this.instanceSquares);
                 System.out.print("DB: ");
-                db.PrintRow();
+                db.printRow();
                 // -*/
             }
         }
         Row res = new Row(this.row.getNumberRow(), this.instanceSquares);
-        res.PrintRow();
+        //res.printRow();
     }
     
     private void savePreviousSquares() {
@@ -252,10 +275,16 @@ public class RowSolver {
     }
     
     private void lockNextNumberToStartSquares() {
+        /*
+        // DB
+        System.out.println("lock");
+        // -
+        */
         int seriesNumber = -1;
         if (this.previousSquares[0] == SquareStatus.BLACK) {
             seriesNumber++;
         }
+        this.startSquares[0] = this.previousSquares[0];
         int i = 1;
         while (i < this.startSquares.length) {
             if (this.previousSquares[i] == SquareStatus.BLACK
@@ -274,6 +303,18 @@ public class RowSolver {
         }
         this.startInstanceNumber++;
         this.startNextSearchFrom--;
+        
+        /*
+        // DB
+        System.out.println("+ Go back +:");
+        System.out.println(this.startSquares.length);
+        System.out.println("+");
+        for (int in = 0; in < this.startSquares.length; in++) {
+            System.out.println(this.startSquares[in]);
+        }
+        System.out.println("+ + + + +");
+        // -
+        */
     }
     
     /*
@@ -303,6 +344,7 @@ public class RowSolver {
     */
     
     private void writeToSolution() {
+        /*
         //Debugging
         System.out.print("           ");
         for (int i = 0; i < this.lockedSolutionSquares.length; i++) {
@@ -315,9 +357,20 @@ public class RowSolver {
         System.out.println("");
         Row db = new Row(this.row.getNumberRow(), this.solutionSquares);
         System.out.print("SOL: ");
-        db.PrintRow();
+        db.printRow();
         System.out.println("");
         //-
+        */
+        /*
+        // DB
+        for (int i = 0; i < this.instanceSquares.length; i++) {
+            System.out.println("i: " + this.instanceSquares[i]
+                    + ", lock: "+ this.lockedSolutionSquares[i]);
+        }
+        System.out.println("-----");
+        // -
+        */
+        
         for (int i = 0; i < this.solutionSquares.length; i++) {
             if (!this.lockedSolutionSquares[i]) {
                 /*
@@ -354,14 +407,15 @@ public class RowSolver {
                 }
             }      
         }
+        /*
         //Debugging
         Row dib = new Row(this.row.getNumberRow(), this.instanceSquares);
         System.out.print("INS: ");
-        dib.PrintRow();
+        dib.printRow();
         System.out.println("");
         db = new Row(this.row.getNumberRow(), this.solutionSquares);
         System.out.print("SOL: ");
-        db.PrintRow();
+        db.printRow();
         System.out.print("           ");
         for (int i = 0; i < this.lockedSolutionSquares.length; i++) {
             if (this.lockedSolutionSquares[i]) {
@@ -372,6 +426,7 @@ public class RowSolver {
         }
         System.out.println("");
         //-
+        */
     }
 
     public Boolean[] getChangedSquares() {

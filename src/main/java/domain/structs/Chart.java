@@ -19,6 +19,7 @@ public class Chart {
         this.leftNumbers = leftNumbers;
         this.topNumbers = topNumbers;
         this.table = new SquareStatus[this.leftNumbers.length][this.topNumbers.length];
+        populateTableWithEmpties();
     }
     
     /**

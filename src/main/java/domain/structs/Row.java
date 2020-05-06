@@ -71,7 +71,7 @@ public class Row {
     }
     
     // Used for debugging
-    public void PrintRow() {
+    public void printRow() {
         for (int i = 0; i < this.numberRow.length(); i++) {
             System.out.print(this.numberRow.lookNumber(i) + " ");
         }
