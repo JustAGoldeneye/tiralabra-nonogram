@@ -57,6 +57,14 @@ public class Row {
     public NumberRow getNumberRow() {
         return numberRow;
     }
+    
+    /**
+     * Gets the reference to the squares object. USE ONLY WITH TESTS.
+     * @return squares
+     */
+    public SquareStatus[] getSquares() {
+        return squares;
+    }
 
     public void setSquares(SquareStatus[] squares) {
         this.squares = squares;

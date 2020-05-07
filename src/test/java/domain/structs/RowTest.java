@@ -26,8 +26,20 @@ public class RowTest {
         }
     }
     
-    /*
-    Do a test that uses the exact example row that was used in the algorithm
-    design memo on the paper. (The one with step-by-step progression)
-    */
+    @Test 
+    public void copyingSquaresCreatesNewObject() {
+        SquareStatus[] copy = this.row.copySquares(0);
+        assertFalse(copy == this.row.getSquares());
+    }
+    
+    public void copiedSquaresAreEqualToOriginalOnes() {
+        SquareStatus[] copy = this.row.copySquares(0);
+        for (int i = 0; i < copy.length; i++) {
+            if (copy[i] != this.row.lookSquareStatus(i)) {
+                fail("Square in index " + i + " was " + copy[i]
+                        + " but should have been "
+                        + this.row.lookSquareStatus(i) + ".");
+            }
+        }
+    }
 }
