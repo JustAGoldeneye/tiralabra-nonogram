@@ -47,24 +47,46 @@ public class SimpleChartSolver {
             //-
             */
             this.checkChartOnce();
+            //this.checkChartOnceSimple();
             currentRound++;
+            //System.out.println("cr:" + this.currentRound);
         }
     }
     
     private void checkChartOnce() {
-        // temporary solution
+        int rowIndex = 0;
+        int columnIndex = 0;
+        while ((rowIndex < this.chart.verticalLength())
+                || (columnIndex < this.chart.horizontalLength()))
+            if (((double) rowIndex) / ((double) this.chart.verticalLength()) <= ((double) columnIndex) / ((double) this.chart.horizontalLength())) {
+                //System.out.println("row");
+                if (this.latestChangeToRows[rowIndex] >= this.currentRound - 1) {
+                    this.solveRow(rowIndex);
+                }
+                rowIndex++;
+            } else {
+                //System.out.println("column");
+                if (this.latestChangeToColumns[columnIndex] >= this.currentRound -1) {
+                    this.solveColumn(columnIndex);
+                }
+                columnIndex++;
+            }
+        this.solvesInLastRound = true;
+    }
+    
+    // Used for comparasion purposes
+    private void checkChartOnceSimple() {
         for (int i = 0; i < this.chart.verticalLength(); i++) {
             if (this.latestChangeToRows[i] >= this.currentRound - 1) {
                 this.solveRow(i);
-                this.solvesInLastRound = true;
             }
         }
         for (int i = 0; i < this.chart.horizontalLength(); i++) {
             if (this.latestChangeToColumns[i] >= this.currentRound -1) {
                 this.solveColumn(i);
-                this.solvesInLastRound = true;
             }
         }
+        this.solvesInLastRound = true;
     }
     
     private void solveRow(int index) {

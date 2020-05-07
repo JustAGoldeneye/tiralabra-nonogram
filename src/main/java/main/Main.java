@@ -6,7 +6,7 @@ import domain.solvers.*;
 
 public class Main {
     public static void main(String[] args) {
-        chartUncertainTest();
+        chart5X5ManTest();
     }
     
     private static void sanityCheck() {
@@ -113,7 +113,7 @@ public class Main {
         chart.printChart();
     }
     
-    private static void chartUncertainTest() {
+    private static void chartUncertainManTest() {
         /*
         Expected solution:
         ? ? 
