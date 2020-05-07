@@ -6,7 +6,7 @@ import domain.solvers.*;
 
 public class Main {
     public static void main(String[] args) {
-        chart5X5ManTest();
+        rowDifficultManTest();
     }
     
     private static void sanityCheck() {
@@ -30,7 +30,7 @@ public class Main {
         System.out.println("");
     }
     
-    private static void difficultManTest() {
+    private static void rowDifficultManTest() {
         /*
         Input:
         1 5 | ? ? 0 ? 1 ? 1 ? ? ?
@@ -66,7 +66,7 @@ public class Main {
         }
     }
     
-    private static void shortRowManTest() {
+    private static void rowShortManTest() {
         Row row3 = new Row(new NumberRow(new int[]{1, 3}),
                 new SquareStatus[]{SquareStatus.EMPTY, SquareStatus.CROSS,
                     SquareStatus.BLACK, SquareStatus.BLACK, SquareStatus.BLACK});
