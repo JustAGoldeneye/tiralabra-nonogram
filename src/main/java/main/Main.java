@@ -32,6 +32,9 @@ public class Main {
     
     private static void difficultManTest() {
         /*
+        Input:
+        1 5 | ? ? 0 ? 1 ? 1 ? ? ?
+        
         Expected solution:
         1 5 | ? ? 0 ? 1 1 1 1 ? 0 
         */
@@ -75,12 +78,25 @@ public class Main {
     
     private static void chart5X5ManTest() {
         /*
+        Input:
+                1 3
+              2 1 1 4 3
+            -----------
+          3 | ? ? ? ? ?  
+          4 | ? ? ? ? ? 
+        1 3 | ? ? ? ? ? 
+        1 1 | ? ? ? ? ? 
+          2 | ? ? ? ? ?
+        
         Expected solution:
-        0 0 1 1 1 
-        0 1 1 1 1 
-        1 0 1 1 1 
-        1 0 0 1 0 
-        0 1 1 0 0 
+                1 3
+              2 1 1 4 3
+            -----------
+          3 | 0 0 1 1 1 
+          4 | 0 1 1 1 1 
+        1 3 | 1 0 1 1 1 
+        1 1 | 1 0 0 1 0 
+          2 | 0 1 1 0 0 
         */
         
         NumberRow topNR1 = new NumberRow(new int[]{2});
@@ -115,14 +131,29 @@ public class Main {
     
     private static void chartUncertainManTest() {
         /*
+        Input:
+            2 2
+            2 2
+          -----
+        1 | ? ? 
+        1 | ? ? 
+        1 | ? ? 
+        1 | ? ? 
+        0 | ? ? 
+        2 | ? ? 
+        2 | ? ?
+        
         Expected solution:
-        ? ? 
-        ? ? 
-        ? ? 
-        ? ? 
-        0 0 
-        1 1 
-        1 1 
+            2 2
+            2 2
+          -----
+        1 | ? ? 
+        1 | ? ? 
+        1 | ? ? 
+        1 | ? ? 
+        0 | 0 0 
+        2 | 1 1 
+        2 | 1 1 
         */
         
         NumberRow topNR1 = new NumberRow(new int[]{2, 2});
