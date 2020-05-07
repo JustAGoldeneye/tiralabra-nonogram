@@ -3,10 +3,11 @@ package main;
 import java.util.Scanner;
 import domain.structs.*;
 import domain.solvers.*;
+import dao.CWDReader;
 
 public class Main {
     public static void main(String[] args) {
-        rowDifficultManTest();
+        CWDManTest();
     }
     
     private static void sanityCheck() {
@@ -165,7 +166,7 @@ public class Main {
         NumberRow leftNR2 = new NumberRow(new int[]{1});
         NumberRow leftNR3 = new NumberRow(new int[]{1});
         NumberRow leftNR4 = new NumberRow(new int[]{1});
-        NumberRow leftNR5 = new NumberRow(new int[]{});
+        NumberRow leftNR5 = new NumberRow();
         NumberRow leftNR6 = new NumberRow(new int[]{2});
         NumberRow leftNR7 = new NumberRow(new int[]{2});
         
@@ -182,5 +183,14 @@ public class Main {
         cs.solve();
         
         chart.printChart();
+    }
+    
+    private static void CWDManTest() {
+        CWDReader r = new CWDReader("test_input/uncertain_test_1.cwd");
+        Chart c = r.read();
+        c.printChart();
+        SimpleChartSolver s = new SimpleChartSolver(c);
+        s.solve();
+        c.printChart();
     }
 }

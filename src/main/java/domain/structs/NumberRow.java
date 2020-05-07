@@ -16,10 +16,10 @@ public class NumberRow {
     }
     
     /**
-     * Creates a nonogram number row with single 0.
+     * Creates an empty nonogram number row.
      */
     public NumberRow() {
-        this.numbers = new int[1];
+        this.numbers = new int[0];
     }
     
     /**
