@@ -11,8 +11,8 @@ import java.text.SimpleDateFormat;
 public class TestLogWriter {
     String fileName;
     
-    public TestLogWriter(String name, String solutionType) {
-        this.fileName = "test_output/" + name + "_" + solutionType + ".log";
+    public TestLogWriter(String name, String algorithmType) {
+        this.fileName = "test_output/" + name + "_" + algorithmType + ".log";
     }
     
     public void writeSolveTime(long solveTime) {

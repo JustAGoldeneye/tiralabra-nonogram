@@ -1,30 +1,15 @@
 package domain.solvers;
 
-import domain.structs.Chart;
 import domain.structs.SquareStatus;
 import dao.*;
 
-public abstract class ChartSolverTest {
-    protected Chart chart;
+public abstract class ChartSolverTest extends ChartSolverLoggingOnlyTest {
     private SquareStatus[][] solution;
-    long solveTime;
-    String name;
-    String solutionType;
       
-    protected void importData(String name, String solutionType) {
-        CWDReader cwdReader = new CWDReader("test_input/" + name + ".cwd");
-        this.chart = cwdReader.read();
+    protected void importFiles(String name, String solutionType) {
+        super.importFile(name, solutionType);
         NGRESReader ngresReader = new NGRESReader("test_input/" + name + "_" + solutionType + ".ngres");
         this.solution = ngresReader.read();
-        this.name = name;
-        this.solutionType = solutionType;
-    }
-    
-    private void solveAndCountTime(Solver solver) {
-        long startTime = System.currentTimeMillis();
-        solver.solve();
-        this.solveTime = System.currentTimeMillis();
-        this.solveTime -= startTime;
     }
     
     private Boolean checkResultMatches() {
@@ -42,11 +27,10 @@ public abstract class ChartSolverTest {
         return true;
     }
     
-    protected Boolean saveAndReturnResult(Solver solver) {
-        this.solveAndCountTime(solver);
+    protected Boolean test(Solver solver) {
+        super.solveAndCountTime(solver);
         if (this.checkResultMatches()) {
-            TestLogWriter writer = new TestLogWriter(this.name, this.solutionType);
-            writer.writeSolveTime(solveTime);
+            super.logTime();
             return true;
         }
         return false;

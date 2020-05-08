@@ -8,11 +8,11 @@ public class Simple1ChartSolverTest extends ChartSolverTest {
     
     @Before
     public void setUp() {
-        super.importData("picross_s4_p002", "simple");
+        super.importFiles("picross_s4_p002", "simple");
     }
     
     @Test
     public void chartGetsSolvedCorrectly() {
-        assertTrue(super.saveAndReturnResult(new SimpleChartSolver(super.chart)));
+        assertTrue(super.test(new SimpleChartSolver(super.chart)));
     }
 }

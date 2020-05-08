@@ -12,11 +12,11 @@ public class Uncertain1ChartSolver extends ChartSolverTest {
     
     @Before
     public void setUp() {
-        super.importData("uncertain_test_1", "simple");
+        super.importFiles("uncertain_test_1", "simple");
     }
     
     @Test
     public void chartGetsSolvedCorrectly() {
-        assertTrue(super.saveAndReturnResult(new SimpleChartSolver(super.chart)));
+        assertTrue(super.test(new SimpleChartSolver(super.chart)));
     }
 }
