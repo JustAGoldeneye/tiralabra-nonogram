@@ -3,7 +3,7 @@ package main;
 import java.util.Scanner;
 import domain.structs.*;
 import domain.solvers.*;
-import dao.CWDReader;
+import dao.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -186,11 +186,22 @@ public class Main {
     }
     
     private static void CWDManTest() {
-        CWDReader r = new CWDReader("test_input/uncertain_test_1.cwd");
+        CWDReader r = new CWDReader("test_input/picross_s4_p002.cwd");
         Chart c = r.read();
         c.printChart();
         SimpleChartSolver s = new SimpleChartSolver(c);
         s.solve();
         c.printChart();
+    }
+    
+    private static void NGRESManTest() {
+        NGRESReader nr = new NGRESReader("test_input/uncertain_test_1_simple.ngres");
+        SquareStatus[][] s = nr.read();
+        for (int i = 0; i < s.length; i++) {
+            for (int j = 0; j < s[0].length; j++) {
+                System.out.print(s[i][j] + " ");
+            }
+            System.out.println("");
+        }
     }
 }
