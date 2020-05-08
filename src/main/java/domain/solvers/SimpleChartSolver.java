@@ -17,6 +17,10 @@ public class SimpleChartSolver implements Solver {
     private Boolean solvesInLastRound;
     private Boolean chartContainsEmpties;
     
+    /**
+     * Initializes SimpleChartSolver.
+     * @param chart the chart to be solved
+     */
     public SimpleChartSolver(Chart chart) {
         this.chart = chart;
         this.currentRound = 1;
@@ -26,6 +30,9 @@ public class SimpleChartSolver implements Solver {
         this.chartContainsEmpties = true;
     }
     
+    /**
+     * Solves the chart given to the solver in the constructor
+     */
     @Override
     public void solve() {
         while (this.solvesInLastRound && this.chartContainsEmpties) {
@@ -54,12 +61,19 @@ public class SimpleChartSolver implements Solver {
         }
     }
     
+    /**
+     * Goes through and tries to solve all rows and columns in the chart once.
+     * The rows and columns get checked in a way that at any moment the
+     * percentage of the rows checked and the percentage of the columns checked
+     * are as close to each other as possible.
+     */
     private void checkChartOnce() {
         int rowIndex = 0;
         int columnIndex = 0;
         while ((rowIndex < this.chart.verticalLength())
-                || (columnIndex < this.chart.horizontalLength()))
-            if (((double) rowIndex) / ((double) this.chart.verticalLength()) <= ((double) columnIndex) / ((double) this.chart.horizontalLength())) {
+                || (columnIndex < this.chart.horizontalLength())) {
+            if (((double) rowIndex) / ((double) this.chart.verticalLength())
+                    <= ((double) columnIndex) / ((double) this.chart.horizontalLength())) {
                 //System.out.println("row");
                 if (this.latestChangeToRows[rowIndex] >= this.currentRound - 1) {
                     this.solveRow(rowIndex);
@@ -72,10 +86,15 @@ public class SimpleChartSolver implements Solver {
                 }
                 columnIndex++;
             }
+        }
         this.solvesInLastRound = true;
     }
     
-    // Used for comparasion purposes
+    /**
+     * Goes through and tries to solve all rows and columns in the chart once.
+     * The rows get checked first, then the columns. This method is not in use
+     * currently.
+     */
     private void checkChartOnceSimple() {
         for (int i = 0; i < this.chart.verticalLength(); i++) {
             if (this.latestChangeToRows[i] >= this.currentRound - 1) {
@@ -90,6 +109,10 @@ public class SimpleChartSolver implements Solver {
         this.solvesInLastRound = true;
     }
     
+    /**
+     * Solves the given row and saves the result to the chart.
+     * @param index the index of row to be solves
+     */
     private void solveRow(int index) {
         Row result = this.chart.horizontalChartRowToRow(index);
         RowSolver rs = new RowSolver(result);
@@ -111,6 +134,10 @@ public class SimpleChartSolver implements Solver {
         }
     }
     
+    /**
+     * Solves the given column and saves the result to the chart.
+     * @param index the index of column to be solves
+     */
     private void solveColumn(int index) {
         Row result = this.chart.verticalChartRowToRow(index);
         RowSolver rs = new RowSolver(result);

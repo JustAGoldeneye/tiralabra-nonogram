@@ -6,16 +6,25 @@ import java.util.Scanner;
 import java.io.File;
 
 /**
- *
+ * Imports the contents of the given CWD file to Chart.
  * @author eemeli
  */
 public class CWDReader {
     File file;
     
+    /**
+     * Initializes CWDReader.
+     * @param fileName the CWD file to be read
+     */
     public CWDReader(String fileName) {
         this.file = new File(fileName);
     }
     
+    /**
+     * Reads the contents of the file specified in the constructor and returns the
+     * contents as Chart object.
+     * @return the contents of the file as Chart
+     */
     public Chart read() {
         NumberRow[] leftNumbers;
         NumberRow[] topNumbers;
@@ -36,6 +45,12 @@ public class CWDReader {
         return null;
     }
     
+    /**
+     * Reads the contents of the given row and returns the contents as NumberRow
+     * object.
+     * @param row the row to be read
+     * @return the contents of the row as NumberRow
+     */
     private NumberRow rowToNumberRow(String row) {
         if (row.isEmpty()) {
             return new NumberRow();

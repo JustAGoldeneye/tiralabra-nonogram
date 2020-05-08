@@ -5,16 +5,26 @@ import java.util.Scanner;
 import java.io.File;
 
 /**
- *
+ * Imports the contents of the given NGRES file to two-dimensional SquareStatus
+ * array.
  * @author eemeli
  */
 public class NGRESReader {
     File file;
     
+    /**
+     * Initializes NGRESReader.
+     * @param fileName the NGRES file to be read
+     */
     public NGRESReader(String fileName) {
         this.file = new File(fileName);
     }
     
+    /**
+     * Reads the contents of the file specified in the constructor and returns the
+     * contents as two-dimensional SquareStatus array.
+     * @return two-dimensional SquareStatus array
+     */
     public SquareStatus[][] read() {
         SquareStatus[][] squares;
         try (Scanner fileReader = new Scanner(this.file)) {
@@ -29,7 +39,12 @@ public class NGRESReader {
         }
         return null;
     }
-    
+    /**
+     * Reads the contents of the given row and returns the contents as
+     * one-dimensional squareStatus array.
+     * @param row the row to be read
+     * @return the contents of the row as one-dimensional squareStatus array
+     */
     private SquareStatus[] rowToSquareStatus(String row) {
         if (row.isEmpty()) {
             return new SquareStatus[0];

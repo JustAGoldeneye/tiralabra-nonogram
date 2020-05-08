@@ -4,7 +4,8 @@ import domain.structs.Row;
 import domain.structs.SquareStatus;
 
 /**
- * Used to get á solution for a nonogam row based on the current information on the row.
+ * Used to get á solution for a nonogam row based on the current information on
+ * the row.
  * @author eemeli
  */
 public class RowSolver implements Solver {
@@ -20,6 +21,10 @@ public class RowSolver implements Solver {
     private Boolean[] changedSquares;
     private int startNextSearchFrom;
     
+    /**
+     * Initializes RowSolver.
+     * @param row the row to be solved
+     */
     public RowSolver(Row row) {
         this.row = row;
         this.solutionSquares = this.row.copySquares(0);
@@ -40,6 +45,9 @@ public class RowSolver implements Solver {
         }
     }
     
+    /**
+     * Solves the row given to the solver in the constructor
+     */
     @Override
     public void solve() {
         if (this.numbers.length == 0) {
@@ -79,6 +87,10 @@ public class RowSolver implements Solver {
         this.row.setSquares(this.solutionSquares);
     } 
     
+    /**
+     * Resets the array used for checking whether the row can be filled in a
+     * certain way.
+     */
     private void resetInstanceSquares() {
         for (int i = 0; i < this.instanceSquares.length; i++) {
             this.instanceSquares[i] = this.startSquares[i];
@@ -86,6 +98,10 @@ public class RowSolver implements Solver {
         this.currentInstanceNumber = this.startInstanceNumber;
     }
     
+    /**
+     * Checks whether the current is possible to fill and fills it if possible.
+     * @return whether the row was possible to fill or not
+     */
     private boolean tryFillRow() {
         int currentPos = this.startNextSearchFrom;
         //int nextSeriesStartPos;
@@ -241,6 +257,12 @@ public class RowSolver implements Solver {
         return -1;
     }
     
+    /**
+     * Counts the empty and black squares from the given position on the
+     * instance squares until the next cross or null square.
+     * @param startPos position to start the count from
+     * @return amount of found empty and black squares
+     */
     private int countEmptyAndBlackSquaresFrom(int startPos) {
         int validSquares = 0;
         while (startPos + validSquares < this.instanceSquares.length
@@ -251,6 +273,13 @@ public class RowSolver implements Solver {
         return validSquares;
     }
     
+    /**
+     * Check whether a new series of black squares on instance squares would
+     * touch other black squares on the right side.
+     * @param currentPos start position of the new series
+     * @param SquaresToBlacken length of the new series
+     * @return 
+     */
     private Boolean checkSeriesWillNotTouchOtherBlacksOnRight(int currentPos, int SquaresToBlacken) {
         if (currentPos+SquaresToBlacken >= this.instanceSquares.length) {
             // NOTE: -1 has been removed from both sides of the comparasion to avoid redundancy.
@@ -259,6 +288,12 @@ public class RowSolver implements Solver {
         return this.instanceSquares[currentPos+SquaresToBlacken] != SquareStatus.BLACK;
     }
     
+    /**
+     * Fill the instance squares with blacks starting from the given position.
+     * The amount of squares to blacken are obtained from numbers and
+     * currentInstanceNumber.
+     * @param startPos position to start the filling from
+     */
     private void blackenNextSeries(int startPos) {
         /*System.out.println("Black: " + this.numbers[this.currentInstanceNumber]
                 + " from " + startPos);*/
@@ -279,14 +314,20 @@ public class RowSolver implements Solver {
         // -*/
     }
     
+    /**
+     * Copies current instanceSquares to previousSquares.
+     */
     private void savePreviousSquares() {
         for (int i = 0; i < this.instanceSquares.length; i++) {
             this.previousSquares[i] = this.instanceSquares[i];
         }
     }
     
+    /**
+     * Lock the next number on numbers to be included in the start state
+     * after resetting instanceSquares.
+     */
     private void lockNextNumberToStartSquares() {
-        
         /*// DB
         System.out.println("lock");
         // - */
@@ -353,6 +394,9 @@ public class RowSolver implements Solver {
     }
     */
     
+    /**
+     * Saves the result of successful instanceSquares check to solutionSquares.
+     */
     private void writeToSolution() {
         /*
         //Debugging
@@ -439,6 +483,9 @@ public class RowSolver implements Solver {
         */
     }
     
+    /**
+     * Fills the solutionSquares completely with crosses.
+     */
     private void fillSolutionWithCrosses() {
         for (int i = 0; i < this.solutionSquares.length; i++) {
             if (this.solutionSquares[i] != SquareStatus.CROSS) {
