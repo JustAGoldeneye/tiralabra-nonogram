@@ -4,11 +4,15 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
 
-public class Simple1ChartSolverTest extends ChartSolverTest {
+/**
+ *
+ * @author eemeli
+ */
+public class Uncertain1ChartSolver extends ChartSolverTest {
     
     @Before
     public void setUp() {
-        super.importData("picross_s4_p002", "simple");
+        super.importData("uncertain_test_1", "simple");
     }
     
     @Test

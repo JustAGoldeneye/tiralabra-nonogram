@@ -7,7 +7,7 @@ import domain.structs.SquareStatus;
  * Used to get á solution for a nonogam row based on the current information on the row.
  * @author eemeli
  */
-public class RowSolver {
+public class RowSolver implements Solver {
     private Row row;
     private SquareStatus[] instanceSquares; // Using Row for instance should be
     private int[] numbers;          // considered.

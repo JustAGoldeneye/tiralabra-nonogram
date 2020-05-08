@@ -48,3 +48,7 @@ check.dependsOn jacocoTestReport
 run {
     standardInput = System.in
 }
+
+test {
+    test.outputs.upToDateWhen {false}
+}

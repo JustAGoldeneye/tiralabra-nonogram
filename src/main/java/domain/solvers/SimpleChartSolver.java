@@ -9,7 +9,7 @@ import domain.structs.*;
  * improve efficency.
  * @author eemeli
  */
-public class SimpleChartSolver {
+public class SimpleChartSolver implements Solver {
     private Chart chart;
     private int currentRound;
     private int[] latestChangeToRows;
