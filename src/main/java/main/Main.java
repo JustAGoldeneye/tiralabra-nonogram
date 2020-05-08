@@ -186,7 +186,7 @@ public class Main {
     }
     
     private static void CWDManTest() {
-        CWDReader r = new CWDReader("test_input/picross_s4_p002.cwd");
+        CWDReader r = new CWDReader("test_input/webpbn-22336.cwd");
         Chart c = r.read();
         c.printChart();
         SimpleChartSolver s = new SimpleChartSolver(c);
@@ -203,5 +203,18 @@ public class Main {
             }
             System.out.println("");
         }
+    }
+    
+    private static void longRowManTest() {
+        NumberRow nr = new NumberRow(new int[]{5, 19, 4});
+        SquareStatus[] ss = new SquareStatus[35];
+        for (int i = 0; i < ss.length; i++) {
+            ss[i] = SquareStatus.EMPTY;
+        }
+        Row r = new Row(nr, ss);
+        r.printRow();
+        RowSolver rs = new RowSolver(r);
+        rs.solve();
+        r.printRow();
     }
 }

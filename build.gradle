@@ -44,7 +44,7 @@ jacocoTestReport {
 
 check.dependsOn jacocoTestReport
 
-// Temporary solution
+// Temporary solution?
 run {
     standardInput = System.in
 }

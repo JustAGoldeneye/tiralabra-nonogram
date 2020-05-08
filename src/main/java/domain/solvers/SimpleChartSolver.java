@@ -26,6 +26,7 @@ public class SimpleChartSolver implements Solver {
         this.chartContainsEmpties = true;
     }
     
+    @Override
     public void solve() {
         while (this.solvesInLastRound && this.chartContainsEmpties) {
             this.solvesInLastRound = false;
