@@ -31,8 +31,8 @@ public class NumberRowTest {
     }
     
     @Test
-    public void creates1lengthRowWhenNothingGiven() {
+    public void creates0lengthRowWhenNothingGiven() {
         NumberRow row = new NumberRow();
-        assertTrue((row.length() == 1));
+        assertTrue((row.length() == 0));
     }
 }
