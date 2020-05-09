@@ -45,4 +45,19 @@ public class NumberRow {
     public int length() {
         return this.numbers.length;
     }
+    
+    /**
+     * Returns NumberRow as String. Numbers are separated by spaces.
+     * @return NumberRow as String
+     */
+    @Override
+    public String toString() {
+        StringBuilder current = new StringBuilder();
+        for (int i = 0; i < this.length(); i++) {
+            current.append(" ").append(this.lookNumber(i));
+        }
+        return current.toString();
+    }
+    
+    
 }

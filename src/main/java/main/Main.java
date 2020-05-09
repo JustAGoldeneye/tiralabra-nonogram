@@ -4,10 +4,13 @@ import java.util.Scanner;
 import domain.structs.*;
 import domain.solvers.*;
 import dao.*;
+import javafx.application.Application;
+import ui.NonogramApp;
 
 public class Main {
     public static void main(String[] args) {
-        CWDManTest();
+        Application.launch(NonogramApp.class);
+        //CWDManTest();
     }
     
     private static void sanityCheck() {
