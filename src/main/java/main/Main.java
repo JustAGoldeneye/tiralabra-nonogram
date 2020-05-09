@@ -10,7 +10,7 @@ import ui.NonogramApp;
 public class Main {
     public static void main(String[] args) {
         Application.launch(NonogramApp.class);
-        //CWDManTest();
+        //manTest();
     }
     
     private static void sanityCheck() {
@@ -133,6 +133,51 @@ public class Main {
         chart.printChart();
     }
     
+    private static void IncorrectChart5X5ManTest() {
+        /*
+        Input:
+                1 3
+              2 1 1 4 3
+            -----------
+          3 | ? ? ? ? ?  
+          4 | ? ? 0 ? ? 
+        1 3 | ? 1 ? ? ? 
+        1 1 | ? ? ? ? ? 
+          2 | ? ? ? ? ?
+        */
+        
+        NumberRow topNR1 = new NumberRow(new int[]{2});
+        NumberRow topNR2 = new NumberRow(new int[]{1, 1});
+        NumberRow topNR3 = new NumberRow(new int[]{3, 1});
+        NumberRow topNR4 = new NumberRow(new int[]{4});
+        NumberRow topNR5 = new NumberRow(new int[]{3});
+        
+        NumberRow[] topNRs = new NumberRow[]{topNR1, topNR2, topNR3, topNR4,
+            topNR5};
+        
+        NumberRow leftNR1 = new NumberRow(new int[]{3});
+        NumberRow leftNR2 = new NumberRow(new int[]{4});
+        NumberRow leftNR3 = new NumberRow(new int[]{1, 3});
+        NumberRow leftNR4 = new NumberRow(new int[]{1, 1});
+        NumberRow leftNR5 = new NumberRow(new int[]{2});
+        
+        NumberRow[] leftNRs = new NumberRow[]{leftNR1, leftNR2, leftNR3,
+            leftNR4, leftNR5};
+        
+        Chart chart = new Chart(topNRs, leftNRs);
+        chart.changeSquareStaus(1, 2, SquareStatus.BLACK);
+        chart.changeSquareStaus(2, 1, SquareStatus.CROSS);
+        chart.printChart();
+        System.out.println("");
+        System.out.println("--------------------");
+        System.out.println("");
+        
+        SimpleChartSolver cs = new SimpleChartSolver(chart);
+        cs.solve();
+        
+        chart.printChart();
+    }
+    
     private static void chartUncertainManTest() {
         /*
         Input:
@@ -219,5 +264,36 @@ public class Main {
         RowSolver rs = new RowSolver(r);
         rs.solve();
         r.printRow();
+    }
+    
+    private static void manTest() {
+        NumberRow topNR1 = new NumberRow(new int[]{2});
+        NumberRow topNR2 = new NumberRow(new int[]{1, 1});
+        NumberRow topNR3 = new NumberRow(new int[]{3, 1});
+        NumberRow topNR4 = new NumberRow(new int[]{4});
+        NumberRow topNR5 = new NumberRow(new int[]{3});
+        
+        NumberRow[] topNRs = new NumberRow[]{topNR1, topNR2, topNR3, topNR4,
+            topNR5};
+        
+        NumberRow leftNR1 = new NumberRow(new int[]{3});
+        NumberRow leftNR2 = new NumberRow(new int[]{4});
+        NumberRow leftNR3 = new NumberRow(new int[]{1, 3});
+        NumberRow leftNR4 = new NumberRow(new int[]{1, 1});
+        NumberRow leftNR5 = new NumberRow(new int[]{2});
+        
+        NumberRow[] leftNRs = new NumberRow[]{leftNR1, leftNR2, leftNR3,
+            leftNR4, leftNR5};
+        
+        Chart chart = new Chart(topNRs, leftNRs);
+        chart.changeSquareStaus(0, 2, SquareStatus.BLACK);
+        chart.changeSquareStaus(1, 2, SquareStatus.EMPTY);
+        chart.changeSquareStaus(2, 2, SquareStatus.EMPTY);
+        chart.changeSquareStaus(3, 2, SquareStatus.BLACK);
+        chart.changeSquareStaus(4, 2, SquareStatus.BLACK);
+        
+        chart.printChart();
+        UncertainChartSolver us = new UncertainChartSolver(chart, true);
+        us.solve();
     }
 }

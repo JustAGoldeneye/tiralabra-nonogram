@@ -22,6 +22,12 @@ public class Chart {
         populateTableWithEmpties();
     }
     
+    public Chart(NumberRow[] topNumbers, NumberRow[] leftNumbers, SquareStatus[][] table) {
+        this.leftNumbers = leftNumbers;
+        this.topNumbers = topNumbers;
+        this.table = table;
+    }
+    
     /**
      * Creates an empty nonogram chart of given size. Sets the squares in the table
      * to EMPTY status and fills the number rows with zeros. Used for debugging.
@@ -98,6 +104,16 @@ public class Chart {
             squareStatusRow[i] = this.table[i][position];
         }
         return new Row(this.topNumbers[position], squareStatusRow);
+    }
+    
+    public Chart copyChart() {
+        SquareStatus[][] copy = new SquareStatus[this.leftNumbers.length][this.topNumbers.length];
+        for (int i = 0; i < this.table.length; i++) {
+            for (int j = 0; i < this.table[0].length; j++) {
+                copy[i][j] = this.table[i][j];
+            }
+        }
+        return new Chart(this.topNumbers, this.leftNumbers, copy);
     }
     
     public int horizontalLength() {
