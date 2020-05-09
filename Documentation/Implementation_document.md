@@ -49,4 +49,5 @@ While running the final performance tests I noticed that the algorithm does not 
 ## Sources
 
 The puzzles webpbn##### and meow and CWD file format are from https://webpbn.com/survey/.
+
 The puzzle picross_s4_p002 is from a game Picross S4 by Jupiter.

@@ -15,7 +15,9 @@ There are two types of perfomance tests: The first type only measures the solvin
 The tests were run using variety of different sizes puzzles from 14 squares to almost 6000. As I did not manage to finish the algorithm completely, the algorithm cannot solve nonograms of which solving involves any amount of guessing.
 
 ![alt text](https://github.com/JustAGoldeneye/tiralabra-nonogram/blob/master/Documentation/TestResultsC2.png)
+
 The time it took to run the tests on different tries.
 
 ![alt text](https://github.com/JustAGoldeneye/tiralabra-nonogram/blob/master/Documentation/TestResultsC1.png)
+
 The time it took to try to solve the puzzle in relation to the puzzle size.
