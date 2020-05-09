@@ -1,5 +1,7 @@
 [![CircleCI](https://circleci.com/gh/JustAGoldeneye/tiralabra-nonogram.svg?style=svg)](https://circleci.com/gh/JustAGoldeneye/tiralabra-nonogram) [![codecov](https://codecov.io/gh/JustAGoldeneye/tiralabra-nonogram/branch/master/graph/badge.svg)](https://codecov.io/gh/JustAGoldeneye/tiralabra-nonogram)
 
+CircleCI stopped working again after adding JavaFX functionality to the program. The tests still function correctly on my computer. After doing a little bit of research onlinen, it seems likely that the problem is at the CircleCI's end.
+
 # Nonogram solver
 
 Eemeli Leppä
