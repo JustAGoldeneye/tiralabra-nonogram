@@ -19,3 +19,6 @@ Eemeli Leppä
 ## Documentation
 
 * [Definition document](https://github.com/JustAGoldeneye/tiralabra-nonogram/blob/master/Documentation/Definition_document.md)
+* [Testing document](https://github.com/JustAGoldeneye/tiralabra-nonogram/blob/master/Documentation/Testing_document.md)
+* [Implementation document](https://github.com/JustAGoldeneye/tiralabra-nonogram/blob/master/Documentation/Implementation_document.md)
+* [Manual](https://github.com/JustAGoldeneye/tiralabra-nonogram/blob/master/Documentation/Manual.md)

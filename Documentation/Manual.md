@@ -11,7 +11,7 @@ Directory ngsolver contains the program and the CWD files storing nonograms. You
 
 ## Using the program
 
-To solve and import a CWD file in ngsolver directory just write the name of the file, including file ending to the text field and click "Import and solve". You can also import files in sub-directories of ngsolver by writing "yoursubfoldernamehere/yourfile.cwd".
+To solve and import a CWD file in ngsolver directory just write the name of the file, including the file ending to the text field and click "Import and solve". You can also import files in sub-directories of ngsolver by writing "yoursubfoldernamehere/yourfile.cwd".
 
 ## Testing the program
 
