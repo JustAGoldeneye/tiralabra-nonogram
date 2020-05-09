@@ -108,7 +108,6 @@ public class NonogramApp extends Application {
                             Pane background = new Pane();
                             background.setPrefSize(squareSize+borderWidth, squareSize+borderWidth);    
                             chartView.add(background, j, i);
-                            //Image crossImage = new Image("file:cross_pic_final.png");
                             Rectangle crossSquare = new Rectangle(squareSize, squareSize, crossPattern);
                             background.getChildren().add(crossSquare);
                         } else if (chart.lookSquareStatus(j, i) == SquareStatus.BLACK) {

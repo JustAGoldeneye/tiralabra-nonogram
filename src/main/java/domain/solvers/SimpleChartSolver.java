@@ -38,26 +38,8 @@ public class SimpleChartSolver implements Solver {
         while (this.solvesInLastRound && this.chartContainsEmpties) {
             this.solvesInLastRound = false;
             this.chartContainsEmpties = false;
-            /*
-            //DB
-            this.chart.printChart();
-            System.out.println("");
-            System.out.println(this.currentRound);
-            System.out.println("");
-            for (int i = 0; i < this.latestChangeToRows.length; i++) {
-                System.out.println(this.latestChangeToRows[i]);
-            }
-            System.out.println("");
-            for (int i = 0; i < this.latestChangeToColumns.length; i++) {
-                System.out.println(this.latestChangeToColumns[i]);
-            }
-            System.out.println("");
-            //-
-            */
             this.checkChartOnce();
-            //this.checkChartOnceSimple();
             currentRound++;
-            //System.out.println("cr:" + this.currentRound);
         }
     }
     
@@ -74,13 +56,11 @@ public class SimpleChartSolver implements Solver {
                 || (columnIndex < this.chart.horizontalLength())) {
             if (((double) rowIndex) / ((double) this.chart.verticalLength())
                     <= ((double) columnIndex) / ((double) this.chart.horizontalLength())) {
-                //System.out.println("row");
                 if (this.latestChangeToRows[rowIndex] >= this.currentRound - 1) {
                     this.solveRow(rowIndex);
                 }
                 rowIndex++;
             } else {
-                //System.out.println("column");
                 if (this.latestChangeToColumns[columnIndex] >= this.currentRound -1) {
                     this.solveColumn(columnIndex);
                 }

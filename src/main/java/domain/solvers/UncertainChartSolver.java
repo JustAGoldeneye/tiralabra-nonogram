@@ -3,7 +3,7 @@ package domain.solvers;
 import domain.structs.*;
 
 /**
- *
+ * Unfinished. DO NOT USE
  * @author eemeli
  */
 public class UncertainChartSolver{

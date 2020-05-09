@@ -10,8 +10,9 @@ import ui.NonogramApp;
 public class Main {
     public static void main(String[] args) {
         Application.launch(NonogramApp.class);
-        //manTest();
     }
+    
+    // THE CODE BELOW IS USED FOR DEBUGGING
     
     private static void sanityCheck() {
         System.out.println("Is this working? ");

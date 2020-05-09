@@ -10,12 +10,12 @@ import domain.structs.SquareStatus;
  */
 public class RowSolver implements Solver {
     private Row row;
-    private SquareStatus[] instanceSquares; // Using Row for instance should be
-    private int[] numbers;          // considered.
+    private SquareStatus[] instanceSquares;
+    private int[] numbers;
     private int currentInstanceNumber;
     private int startInstanceNumber;
     private SquareStatus[] previousSquares;
-    private SquareStatus[] startSquares; // Replace with a better tryToFill()?
+    private SquareStatus[] startSquares;
     private SquareStatus[] solutionSquares;
     private Boolean[] lockedSolutionSquares;
     private Boolean[] changedSquares;
@@ -58,23 +58,7 @@ public class RowSolver implements Solver {
             
         this.startNextSearchFrom = -1;
         while (this.startNextSearchFrom < this.instanceSquares.length && this.startInstanceNumber < this.numbers.length) {
-            /*
-            this.resetInstanceSquares();
-            for (int i = this.startNextSearchFrom; i < this.instanceSquares.length; i++) {
-                this.tryToMarkSquare(i);
-            }
-            this.writeToSolution();
-            this.startNextSearchFrom++;
-            */
-            //System.out.println("Count start from based on " + this.startNextSearchFrom);
             this.startNextSearchFrom = this.findNextBlackSeriesStartAtOrigin(this.startNextSearchFrom);
-            /*//Debugging
-            Row db = new Row(this.row.getNumberRow(), this.startSquares);
-            System.out.print("DBS: ");
-            db.printRow();
-            // -*/
-            //System.out.println("Start from " + this.startNextSearchFrom);
-            //System.out.println("Start series " + this.startInstanceNumber);
             if (this.startNextSearchFrom == -1) {
                 break;
             }
@@ -82,15 +66,10 @@ public class RowSolver implements Solver {
             if (!this.tryFillRow()) {
                 break;
             }
-            //System.out.println("");
         }
         this.row.setSquares(this.solutionSquares);
     } 
     
-    /**
-     * Resets the array used for checking whether the row can be filled in a
-     * certain way.
-     */
     private void resetInstanceSquares() {
         for (int i = 0; i < this.instanceSquares.length; i++) {
             this.instanceSquares[i] = this.startSquares[i];
@@ -98,33 +77,16 @@ public class RowSolver implements Solver {
         this.currentInstanceNumber = this.startInstanceNumber;
     }
     
-    /**
-     * Checks whether the current is possible to fill and fills it if possible.
-     * @return whether the row was possible to fill or not
-     */
     private boolean tryFillRow() {
         int currentPos = this.startNextSearchFrom;
-        //int nextSeriesStartPos;
         while (true) {
-            //System.out.println(currentPos);
             if (currentPos >= this.instanceSquares.length) {
-                //System.out.println("meni sinne");
                 return false;
-                // ???
             }
             if (currentPos == -1) {
-                //System.out.println("lock");
                 this.lockNextNumberToStartSquares();
                 return true;
             }
-            
-            
-            /*// DB
-            System.out.println("Position: " + currentPos);
-            System.out.println("Current number: " + this.numbers[this.currentInstanceNumber]);
-            System.out.println("Empty: " + this.countEmptyAndBlackSquaresFrom(currentPos));
-            System.out.println("Count:" + this.countEmptyAndBlackSquaresFrom(currentPos));
-            // -*/
             
             if (this.countEmptyAndBlackSquaresFrom(currentPos) >= this.numbers[this.currentInstanceNumber]
                     && this.checkSeriesWillNotTouchOtherBlacksOnRight(currentPos, this.numbers[this.currentInstanceNumber])) {
@@ -135,40 +97,10 @@ public class RowSolver implements Solver {
             if (this.currentInstanceNumber >= this.numbers.length) {
                 break;
             }
-            //System.out.println("");
             currentPos = this.findNextBlackSeriesStartAtInstance(currentPos);
-            //System.out.println("Pos:  " + currentPos);
-            /*if (currentPos >= this.instanceSquares.length) {
-                System.out.println("meni sinne");
-                return false;
-                // ???
-            }
-            nextSeriesStartPos = this.findNextBlackSeriesStartAtInstance(currentPos);
-            System.out.println("Pos:  " + currentPos + ", Next: " + nextSeriesStartPos);
-            if (nextSeriesStartPos == -1) {
-                System.out.println("false");
-                this.lockNextNumberToStartSquares();
-                return true;
-            }
-            System.out.println("Current number: " + this.numbers[this.currentInstanceNumber]);
-            System.out.println("Empty: " + this.countEmptyAndBlackSquaresFrom(currentPos));
-            System.out.println("Count:" + this.countEmptyAndBlackSquaresFrom(currentPos));
-            if (this.countEmptyAndBlackSquaresFrom(currentPos) >= this.numbers[this.currentInstanceNumber]
-                    && this.checkSeriesWillNotTouchOtherBlacksOnRight(currentPos, this.numbers[this.currentInstanceNumber])) {
-                this.blackenNextSeries(currentPos);
-                this.currentInstanceNumber++;
-            }
-            currentPos = nextSeriesStartPos;
-            System.out.println("");*/
         }
-        //System.out.println("WRITING");
         this.writeToSolution();
         savePreviousSquares();
-        /* //TEST CODE, add to RowSolverTest
-        Row justATest = new Row(this.row.getNumberRow(), this.previousSquares);
-        justATest.printRow();
-        */
-        //System.out.println("true");
         return true;
     }
     
@@ -181,8 +113,6 @@ public class RowSolver implements Solver {
      * @return The start next position for next possible series as integer
      */
     private int findNextBlackSeriesStartAtInstance(int startPos) {
-        //System.out.println("instance search");
-        //System.out.println("sp: " + startPos);
         int squaresBeyondExistingBlackSquare = 0;
         Boolean existingBlackSquarePassed = false;
         for (int i = startPos + 1; i < this.instanceSquares.length; i++) {
@@ -192,13 +122,6 @@ public class RowSolver implements Solver {
                 existingBlackSquarePassed = true;
                 squaresBeyondExistingBlackSquare++;
             }
-            /*
-            if (i < this.instanceSquares.length - 1) {
-                if (this.instanceSquares[i+1] == SquareStatus.BLACK) {
-                    continue;
-                }
-            }
-            */
             if (this.instanceSquares[i] == SquareStatus.EMPTY
                     || this.instanceSquares[i] == SquareStatus.BLACK) {
                 if (squaresBeyondExistingBlackSquare > this.numbers[this.currentInstanceNumber]) {
@@ -224,7 +147,6 @@ public class RowSolver implements Solver {
      * @return The start next position for next possible series as integer
      */
     private int findNextBlackSeriesStartAtOrigin(int startPos) {
-        //System.out.println("origin search");
         int squaresBeyondExistingBlackSquare = 0;
         Boolean existingBlackSquarePassed = false;
         for (int i = startPos + 1; i < this.startSquares.length; i++) {
@@ -234,13 +156,6 @@ public class RowSolver implements Solver {
                 existingBlackSquarePassed = true;
                 squaresBeyondExistingBlackSquare++;
             }
-            /*
-            if (i < this.startSquares.length - 1) {
-                if (this.startSquares[i+1] == SquareStatus.BLACK) {
-                    continue;
-                }
-            }
-            */
             if (this.startSquares[i] == SquareStatus.EMPTY
                     || this.startSquares[i] == SquareStatus.BLACK) {
                 if (squaresBeyondExistingBlackSquare > this.numbers[this.startInstanceNumber]) {
@@ -295,23 +210,11 @@ public class RowSolver implements Solver {
      * @param startPos position to start the filling from
      */
     private void blackenNextSeries(int startPos) {
-        /*System.out.println("Black: " + this.numbers[this.currentInstanceNumber]
-                + " from " + startPos);*/
         for (int i = 0; i < this.numbers[this.currentInstanceNumber] && startPos + i < this.instanceSquares.length; i++) {
-            //System.out.println("b: " + i);
             if (this.instanceSquares[startPos + i] == SquareStatus.EMPTY) {
                 this.instanceSquares[startPos + i] = SquareStatus.BLACK;
-                /*// DB
-                Row db = new Row(this.row.getNumberRow(), this.instanceSquares);
-                System.out.print("DB: ");
-                db.printRow();
-                // -*/
             }
         }
-        /*// DB
-        Row res = new Row(this.row.getNumberRow(), this.instanceSquares);
-        res.printRow();
-        // -*/
     }
     
     /**
@@ -328,9 +231,6 @@ public class RowSolver implements Solver {
      * after resetting instanceSquares.
      */
     private void lockNextNumberToStartSquares() {
-        /*// DB
-        System.out.println("lock");
-        // - */
         int seriesNumber = -1;
         if (this.previousSquares[0] == SquareStatus.BLACK) {
             seriesNumber++;
@@ -354,91 +254,14 @@ public class RowSolver implements Solver {
         }
         this.startInstanceNumber++;
         this.startNextSearchFrom--;
-        
-        /*
-        // DB
-        System.out.println("+ Go back +:");
-        System.out.println(this.startSquares.length);
-        System.out.println("+");
-        for (int in = 0; in < this.startSquares.length; in++) {
-            System.out.println(this.startSquares[in]);
-        }
-        System.out.println("+ + + + +");
-        // -
-        */
     }
-    
-    /*
-    private void tryToMarkSquare(int pos) {
-        if(this.instanceSquares[pos] != SquareStatus.EMPTY) {
-            return;
-        }
-        if (pos > 0) {
-            if (this.instanceSquares[pos-1] == SquareStatus.BLACK) {
-                return;
-            }
-        }
-        if (pos < this.instanceSquares.length - 1) {
-            if (this.instanceSquares[pos+1] == SquareStatus.BLACK) {
-                return;
-            }
-        }
-        
-        // Unfinished, at least backtracking and marking several squares in
-        // a row needed. JUNIT + JAVADOC NEEDED
-        // Make a stack structure and use it to replace instance number and
-        // current instance number (top value should be editable and lookable
-        // without popping)?
-        
-        this.instanceSquares[pos] = SquareStatus.BLACK;
-    }
-    */
     
     /**
      * Saves the result of successful instanceSquares check to solutionSquares.
      */
     private void writeToSolution() {
-        /*
-        //Debugging
-        System.out.print("           ");
-        for (int i = 0; i < this.lockedSolutionSquares.length; i++) {
-            if (this.lockedSolutionSquares[i]) {
-                System.out.print("L ");
-            } else {
-                System.out.print("_ ");
-            }
-        }
-        System.out.println("");
-        Row db = new Row(this.row.getNumberRow(), this.solutionSquares);
-        System.out.print("SOL: ");
-        db.printRow();
-        System.out.println("");
-        //-
-        */
-        /*
-        // DB
-        for (int i = 0; i < this.instanceSquares.length; i++) {
-            System.out.println("i: " + this.instanceSquares[i]
-                    + ", lock: "+ this.lockedSolutionSquares[i]);
-        }
-        System.out.println("-----");
-        // -
-        */
-        
         for (int i = 0; i < this.solutionSquares.length; i++) {
             if (!this.lockedSolutionSquares[i]) {
-                /*
-                if (this.solutionSquares[i] == SquareStatus.EMPTY
-                        && this.instanceSquares[i] != SquareStatus.EMPTY) {
-                    this.solutionSquares[i] = this.instanceSquares[i];
-                } else if ((this.solutionSquares[i] == SquareStatus.BLACK
-                        && this.instanceSquares[i] == SquareStatus.CROSS)
-                        || (this.solutionSquares[i] == SquareStatus.CROSS
-                        && this.instanceSquares[i] == SquareStatus.BLACK)) {
-                    this.solutionSquares[i] = SquareStatus.EMPTY;
-                    this.lockedSolutionSquares[i] = true;
-                }
-                */
                 if (this.instanceSquares[i] == SquareStatus.EMPTY
                         && (this.solutionSquares[i] == SquareStatus.CROSS
                         || this.solutionSquares[i] == SquareStatus.EMPTY)) {
@@ -461,26 +284,6 @@ public class RowSolver implements Solver {
                 }
             }      
         }
-        /*
-        //Debugging
-        Row dib = new Row(this.row.getNumberRow(), this.instanceSquares);
-        System.out.print("INS: ");
-        dib.printRow();
-        System.out.println("");
-        db = new Row(this.row.getNumberRow(), this.solutionSquares);
-        System.out.print("SOL: ");
-        db.printRow();
-        System.out.print("           ");
-        for (int i = 0; i < this.lockedSolutionSquares.length; i++) {
-            if (this.lockedSolutionSquares[i]) {
-                System.out.print("L ");
-            } else {
-                System.out.print("_ ");
-            }
-        }
-        System.out.println("");
-        //-
-        */
     }
     
     /**

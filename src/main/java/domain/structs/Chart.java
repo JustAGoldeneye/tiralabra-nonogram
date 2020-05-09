@@ -22,6 +22,12 @@ public class Chart {
         populateTableWithEmpties();
     }
     
+    /**
+     * Creates a nonograms chart with the given number rows and squares.
+     * @param topNumbers
+     * @param leftNumbers
+     * @param table 
+     */
     public Chart(NumberRow[] topNumbers, NumberRow[] leftNumbers, SquareStatus[][] table) {
         this.leftNumbers = leftNumbers;
         this.topNumbers = topNumbers;
@@ -105,7 +111,11 @@ public class Chart {
         }
         return new Row(this.topNumbers[position], squareStatusRow);
     }
-    
+    /**
+     * Returns a copy of the chart object. The new object has its
+     * own reference in memory.
+     * @return a copy of this chart
+     */
     public Chart copyChart() {
         SquareStatus[][] copy = new SquareStatus[this.leftNumbers.length][this.topNumbers.length];
         for (int i = 0; i < this.table.length; i++) {
@@ -131,8 +141,6 @@ public class Chart {
     public NumberRow topNumberRowIn(int position) {
         return this.topNumbers[position];
     }
-    
-    // TODO
     
     /**
      * Prints the chart. Used for debugging

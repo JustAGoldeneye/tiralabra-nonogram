@@ -21,8 +21,6 @@ public class Row {
         this.squares[position] = newStatus;
     }
     
-    // fromIndex is not needed anymore. Removing the function should also be
-    // considered.
     /**
      * Returns a copy of the squares of this Row object. The new object has its
      * own reference in memory. If copying is started beyond index 0, squares
@@ -78,7 +76,9 @@ public class Row {
         return this.squares.length;
     }
     
-    // Used for debugging
+    /**
+     * Prints the row. Used for debugging.
+     */
     public void printRow() {
         for (int i = 0; i < this.numberRow.length(); i++) {
             System.out.print(this.numberRow.lookNumber(i) + " ");
